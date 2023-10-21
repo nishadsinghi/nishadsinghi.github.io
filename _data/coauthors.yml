@@ -1,34 +1,52 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"Bansal":
+  - firstname: ["Hritik", "H.", "H. B.", "Hritik Bansal"]
+    url: https://scholar.google.com/citations?user=gAKTYtoAAAAJ&hl=en
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"Yang":
+  - firstname: ["Yu", "Y.", "Y. Y.", "Yu Yang"]
+    url: https://scholar.google.com/citations?hl=en&user=KK6Yj4IAAAAJ
 
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"Yin":
+  - firstname: ["Fan", "F.", "F. Y.", "Fan Yin"]
+    url: https://scholar.google.com/citations?hl=en&user=klShdV0AAAAJ
 
-"Bach": 
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"Grover":
+  - firstname: ["Aditya", "A.", "A. G.", "Aditya Grover"]
+    url: https://scholar.google.com/citations?hl=en&user=oOhnPUgAAAAJ
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"Chang":
+  - firstname: ["Kai-Wei", "K.", "K. C.", "Kai-Wei Chang"]
+    url: https://scholar.google.com/citations?hl=en&user=fqDBtzYAAAAJ
 
-"Przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"Prystawski":
+  - firstname: ["Ben", "B.", "B. P.", "Ben Prystawski"]
+    url: https://scholar.google.com/citations?hl=en&user=Ns8jBNsAAAAJ
 
-"Schrödinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"Mohnert":
+  - firstname: ["Florian", "F.", "F. M.", "Florian Mohnert"]
+    url: https://scholar.google.com/citations?hl=en&user=BVbGbgwAAAAJ
 
-"Lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"Lieder":
+  - firstname: ["Falk", "F.", "F. L.", "Falk Lieder"]
+    url: https://scholar.google.com/citations?hl=en&user=JscQvlUAAAAJ
 
-"Planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"Agarwal":
+  - firstname: ["Sumeet", "S.", "S. A.", "Sumeet Agarwal"]
+    url: https://scholar.google.com/citations?hl=en&user=vEsSCZsAAAAJ
+
+"Mukherjee":
+  - firstname: ["Sumitava", "S.", "S. M.", "Sumitava Mukherjee"]
+    url: https://scholar.google.com/citations?hl=en&user=gsrGTEQAAAAJ
+
+"Sakaki":
+  - firstname: ["Michiko", "M.", "M. S.", "Michiko Sakaki"]
+    url: https://scholar.google.co.jp/citations?user=_mKkd00AAAAJ&hl=en
+
+"Murayama":
+  - firstname: ["Kou", "K.", "K. M.", "Kou Murayama"]
+    url: https://scholar.google.com/citations?user=r0AJphIAAAAJ&hl=en
+
+
+
+
+

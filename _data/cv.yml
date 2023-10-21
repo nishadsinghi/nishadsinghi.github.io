@@ -1,97 +1,89 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+#- title: General Information
+#  type: map
+#  contents:
+#    - name: Full Name
+#      value: Nishad Singhi
+#    - name: Date of Birth
+#      value: 26th March 1998
+#    - name: Languages
+#      value: English, Hindi, Punjabi
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: M.Sc. in Neural Information Processing
+      institution: University of Tübingen
+      year: 2020 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Grade - "Excellent" | 3.76/4 (US Scale) | 1.24/1 (German Scale).
+    - title: B.Tech. in Electrical Engineering
+      institution: Indian Institute of Technology (IIT) Delhi
+      year: 2016 - 2020
       description:
-        - Description 1.
-        - Description 2.
+        - Specialization in Cognitive and Intelligent Systems.
+        - Grade - 8.6/10.
 
-- title: Experience
+- title: Selected Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Researcher
+      institution: UCLA Computer Science
+      year: 2022 - 2023
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Supervisors - Prof. Kai-Wei Chang and Prof. Aditya Grover.
+        - Objective - Defending multimodal contrastive learning models (e.g., CLIP) against backdoor attacks.
+        - Demonstrated the effectiveness of combining multi-modal contrastive loss (e.g., CLIP) and uni-modal self-supervision loss (e.g., SimCLR) for fine-tuning on limited clean data, countering attacks while maintaining high downstream performance.
+
+    - title: Researcher
+      institution: Max Planck Institute for Intelligent Systems
+      year: 2022 - Present
       description:
-        - Description 1.
-        - Description 2.
+        - Supervisor - Dr. Wieland Brendel.
+        - Objective - Develop a regularization approach for training neural networks that ensures each neuron aligns with a distinct semantic concept, thereby enhancing the mechanistic interpretability of deep neural networks.
+        - We associate each neuron with a specific concept represented by a point in the CLIP embedding space. Then, we train the neural network to position highly activating images close to the concept descriptor within the CLIP embedding space.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Researcher
+      institution: Max Planck Institute for Intelligent Systems
+      year: 2021 - 2023
       description:
+        - Supervisor - Prof. Falk Lieder.
+        - Objective - Create a theoretical framework for setting subgoals that can assist individuals in achieving their objectives.
+        - We use a computational model of human behavior to estimate how much a subgoal benefits individuals. Then, we use optimization methods to identify subgoals that optimize performance. Our subgoals improve performance in user studies.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Visiting Researcher
+      institution: UCLA Statistics
+      year: 2019
+      description:
+        - Supervisor - Prof. Tao Gao.
+        - Objective - Learn policies for multi-agent adversarial games in MuJoCo using Deep Reinforcement Learning.
+        - Implemented AlphaZero and benchmarked its performance against model-free, tree-search algorithms, and heuristic policies.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2023
       items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
+        - Best Paper Award ($1,000) as a co-first author for CleanCLIP at the RTML Workshop at ICLR, 2023.
+        - Diversity and Inclusion Award ($1,000) - Among 10 recipients (worldwide) awarded by Cognitive Science Society.
+    - year: 2020
       items: 
-        - Max Planck Medal
+        - Bounded Rationality Winter School - Among 40 selected (worldwide) for winter school organized by MPI Berlin.
+    - year: 2017
+      items: 
+        - Prof. R.K. Mittal Award (INR 10,000) - Given to 2 freshmen (out of 850) at IIT Delhi for academic performance.
+        - IIT Delhi Merit Award - Conferred for securing a position among the top 7% students of the batch at IIT Delhi.
+    - year: 2016
+      items: 
+        - IIT-JEE - Ranked amongst the top 0.01% applicants out of 1.5 million candidates in IIT-JEE Advanced.
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
 
+#- title: Academic Interests
+#  type: list
+#  contents:
+#     - Generalization, Explainable AI, Learning from limited supervision (self-supervised learning), natural language supervision for AI, multimodal learning
+#     - Computational Cognitive Science
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - I enjoy singing and playing the guitar (and more recently, the ukulele). I was an active member of 'Mridang', the Indian music club of IIT Delhi, performing in and winning various events. Fun fact - as a kid, I was a finalist in a local TV reality singing show! 
+    - I enjoy playing badminton and amateur photography. More recently, I have started enjoying running.
