@@ -3,6 +3,16 @@
 
 @string{aps = {American Physical Society,}}
 
+@InProceedings{Singhi_2025_Preprint,
+    abstract={Test-time compute scaling has pushed the boundaries of reasoning with large language models (LLMs), primarily through self-consistency (SC), which takes a majority vote over multiple solutions, or Best-of-N selection, where a verifier chooses the best answer. Recently, generative reward models (GenRMs), using next-token prediction for verification, have emerged as an alternative to SC. A key trade-off arises: should we generate multiple solutions and vote (SC) or invest in sophisticated verifications to select the best from a smaller set? To address this, we train and evaluate several GenRMs against SC under a fixed inference budget (FLOPs). Surprisingly, across diverse models and datasets, we find SC to be more compute-efficient for most practical budgets, while GenRM requires significantly more compute to outperform SC. We further derive inference scaling laws for GenRMs, showing that compute-optimal inference favors scaling solution generation over increasing verifications. This suggests that current GenRMs, despite their promise, are less compute-efficient than expected, underscoring the need to reduce their inference overhead. Ultimately, our work provides practical guidance for optimizing test-time scaling and balancing solution generation with verification to build more efficient inference strategies.},
+    author    = {Singhi, Nishad and Bansal, Hritik and Hosseini, Arian and Grover, Aditya and Chang, Kai-Wei and Rohrbach, Marcus and Rohrbach, Anna},
+    title     = {When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning},
+    booktitle = {Under Review},
+    year      = {2025},
+
+}
+
+
 @InProceedings{Binz_2024_Preprint,
     arxiv={2410.20268},
     abstract={Establishing a unified theory of cognition has been a major goal of psychology. While there have been previous attempts to instantiate such theories by building computational models, we currently do not have one model that captures the human mind in its entirety. Here we introduce Centaur, a computational model that can predict and simulate human behavior in any experiment expressible in natural language. We derived Centaur by finetuning a state-of-the-art language model on a novel, large-scale data set called Psych-101. Psych-101 reaches an unprecedented scale, covering trial-by-trial data from over 60,000 participants performing over 10,000,000 choices in 160 experiments. Centaur not only captures the behavior of held-out participants better than existing cognitive models, but also generalizes to new cover stories, structural task modifications, and entirely new domains. Furthermore, we find that the model's internal representations become more aligned with human neural activity after finetuning. Taken together, Centaur is the first real candidate for a unified model of human cognition. We anticipate that it will have a disruptive impact on the cognitive sciences, challenging the existing paradigm for developing computational models.},
