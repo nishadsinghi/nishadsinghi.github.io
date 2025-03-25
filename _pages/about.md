@@ -14,6 +14,8 @@ latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
+[**Resume**](https://nishadsinghi.github.io/assets/pdf/Nishad_CV_1pg.pdf)
+
 Hey! I'm Nishad. Thanks for stopping by, and welcome to my webpage! :)
 
 I'm an [ELLIS](https://ellis.eu) PhD student working with [Prof. Anna Rohrbach](https://anna-rohrbach.net/), [Prof. Marcus Rohrbach](https://rohrbach.vision/), and [Prof. Bernt Schiele](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/people/bernt-schiele/).
