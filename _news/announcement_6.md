@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Our [Paper on Concept Realignment in CBMs](https://arxiv.org/abs/2405.01531) is accepted to ECCV 2024!
+Our [Paper](https://arxiv.org/abs/2405.01531) on Concept Realignment in CBMs is accepted to ECCV 2024!

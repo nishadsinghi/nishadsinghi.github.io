@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Our [Preprint on Building a Foundation Model of Human Cognition](https://arxiv.org/abs/2410.20268) is out!
+Our [Preprint](https://arxiv.org/abs/2410.20268) on Building a Foundation Model of Human Cognition is out!
