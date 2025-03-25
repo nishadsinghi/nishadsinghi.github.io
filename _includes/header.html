@@ -94,6 +94,23 @@
               {%- endif -%}
               {%- endif -%}
               {% endfor -%}
+              <!-- {%- endfor -%} -->
+              
+              <!-- CV Link -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{ 'assets/pdf/Nishad_CV_1pg.pdf' | relative_url }}">CV</a>
+              </li>
+
+              {%- if site.enable_darkmode %}
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+              {%- endif %}
+              
               {%- if site.enable_darkmode %}
 
               <!-- Toogle theme mode -->
