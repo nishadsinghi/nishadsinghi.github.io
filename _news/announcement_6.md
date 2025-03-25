@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Our [paper on Concept Realignment in CBMs](https://arxiv.org/abs/2405.01531) is accepted to ECCV 2024. See you in Milan!
+Our [Paper on Concept Realignment in CBMs](https://arxiv.org/abs/2405.01531) is accepted to ECCV 2024!

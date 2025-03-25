@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-One [paper](https://openreview.net/forum?id=7bQmU2rukF) accepted to the Re-align workshop at ICLR 2024!
+One [Paper](https://openreview.net/forum?id=7bQmU2rukF) accepted to the Re-align workshop at ICLR 2024!
