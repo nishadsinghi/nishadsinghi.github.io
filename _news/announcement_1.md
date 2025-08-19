@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Presented [CleanCLIP](https://arxiv.org/abs/2303.03323) as an Oral (Top 2%) at [ICCV 2023](http://iccv2023.thecvf.com/)!
+Presented [CleanCLIP](https://arxiv.org/abs/2303.03323) as an Oral (Top 2%) at [ICCV 2023](http://iccv2023.thecvf.com/)! 🇫🇷

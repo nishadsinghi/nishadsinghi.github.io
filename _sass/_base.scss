@@ -445,10 +445,26 @@ footer.sticky-bottom {
       background-color: inherit;
       border-color: var(--global-divider-color);
 
-      .badge {
+            .badge {
         color: var(--global-card-bg-color) !important;
         background-color: var(--global-theme-color) !important;
       }
+    }
+  }
+}
+
+// Publication badges
+.badge {
+  color: white !important;
+  text-decoration: none;
+  
+  a {
+    color: white !important;
+    text-decoration: none;
+    
+    &:hover {
+      color: white !important;
+      text-decoration: none;
     }
   }
 }

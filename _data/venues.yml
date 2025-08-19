@@ -1,6 +1,35 @@
 "AJP":
   url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
+  color: "#B509AC"
 
 "PhysRev":
   url: https://journals.aps.org/
+  color: "#B509AC"
+
+"Oral (Top 2%)":
+  url: https://iccv2023.thecvf.com/
+  color: "#B509AC"
+
+"ICCV":
+  url: https://iccv2023.thecvf.com/
+  color: "#B509AC"
+
+"ECCV":
+  url: https://eccv2024.ecva.net/
+  color: "#B509AC"
+
+"CoLM":
+  url: https://colmweb.org/
+  color: "#B509AC"
+
+"Nature":
+  url: https://www.nature.com/
+  color: "#B509AC"
+
+"CogSci":
+  url: https://cognitivesciencesociety.org/
+  color: "#B509AC"
+
+"PuG":
+  url: https://www.psychologie-und-gehirn.de/
+  color: "#B509AC"

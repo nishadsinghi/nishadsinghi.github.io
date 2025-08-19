@@ -53,8 +53,15 @@
           {%- assign coauthor_url = nil -%}
           {%- if site.data.coauthors[author_last_name] -%}
             {%- for coauthor in site.data.coauthors[author_last_name] -%}
-              {%- if coauthor.firstname contains author.first -%}
-                {%- assign coauthor_url = coauthor.url -%}
+              {%- assign found_match = false -%}
+              {%- for firstname_variant in coauthor.firstname -%}
+                {%- if firstname_variant == author.first or firstname_variant contains author.first or author.first contains firstname_variant -%}
+                  {%- assign coauthor_url = coauthor.url -%}
+                  {%- assign found_match = true -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if found_match -%}
                 {%- break -%}
               {%- endif -%}
             {%- endfor -%}
@@ -132,9 +139,16 @@
         <div class="periodical">
           {{ periodical | strip }}
         </div>
+        {% if entry.award %}
         <div class="periodical">
-          {{ entry.note | strip }}
+          <strong style="color: maroon;">{{ entry.award | strip }}</strong>
         </div>
+        {% endif %}
+        {% if entry.note %}
+        <div class="periodical">
+          <em>{{ entry.note | strip }}</em>
+        </div>
+        {% endif %}
 
           <!-- Links/Buttons -->
           <div class="links">

@@ -14,13 +14,13 @@ latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-[[**Resumé**](https://nishadsinghi.github.io/assets/pdf/Nishad_CV_1pg.pdf)]
+<!-- [[**Resumé**](https://nishadsinghi.github.io/assets/pdf/Nishad_CV_1pg.pdf)] -->
 
 Hey! I'm Nishad. Thanks for stopping by, and welcome to my webpage! :)
 
-I'm an [ELLIS](https://ellis.eu) PhD student working with [Prof. Anna Rohrbach](https://anna-rohrbach.net/), [Prof. Marcus Rohrbach](https://rohrbach.vision/), and [Prof. Bernt Schiele](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/people/bernt-schiele/).
+I'm an [ELLIS](https://ellis.eu) PhD student working with [Prof. Anna Rohrbach](https://anna-rohrbach.net/), [Prof. Marcus Rohrbach](https://rohrbach.vision/), and [Prof. Bernt Schiele](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/people/bernt-schiele/). I am also collaborating with [Datacomp](https://www.datacomp.ai/) under [Prof. Ludwig Schmidt](https://people.csail.mit.edu/ludwigs/).
 
-These days, I'm interested in multimodality, reasoning, and agents.
+These days, I'm interested in physical AI, multimodality, reasoning, and agents.
 
 I've spent time working at the [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/) and [UCLA](https://ucla.edu). Along the way, I've had the fortune of working with some amazing mentors: [Kai-Wei Chang (UCLA)](https://scholar.google.com/citations?user=fqDBtzYAAAAJ&hl=en), [Aditya Grover (UCLA)](https://scholar.google.com/citations?user=oOhnPUgAAAAJ&hl=en), [Wieland Brendel (MPI-IS)](https://scholar.google.com/citations?user=v-JL-hsAAAAJ&hl=en), [Zeynep Akata (TU Münich)](https://scholar.google.com/citations?user=jQl9RtkAAAAJ&hl=en), and [Falk Lieder (UCLA)]([Falk Lieder](https://scholar.google.com/citations?user=JscQvlUAAAAJ&hl=en)). My research has been awarded the 🏆 [Best Paper Award](https://rtml-iclr2023.github.io/papers.html) at an ICLR 2023 workshop, and the [Diversity and Inclusion Award](https://cognitivesciencesociety.org/conference-awards/) at CogSci 2023.
 
