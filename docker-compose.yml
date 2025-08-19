@@ -3,8 +3,14 @@ version: "3"
 services:
   jekyll:
     image: amirpourmand/al-folio
-    build: .
     ports:
-      - 8080:8080
+      - "4000:4000"
     volumes:
-      - .:/srv/jekyll
+      - ".:/srv/jekyll"
+    environment:
+      - BUNDLE_GEMFILE=Gemfile.simple
+    command: >
+      bash -c "
+      bundle install --gemfile=Gemfile.simple && 
+      bundle exec jekyll serve --gemfile=Gemfile.simple --config=_config.minimal.yml --host=0.0.0.0 --port=4000 --force_polling --verbose
+      "
