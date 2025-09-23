@@ -44,11 +44,16 @@
 
         {%- for author in entry.author_array limit: author_array_limit -%}
           {%- assign author_is_self = false -%}
-          {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
+          {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" | strip -%}
+          {%- assign author_first_name = author.first | remove: "*" | strip -%}
           {%- if site.scholar.last_name contains author_last_name -%}
-            {%- if site.scholar.first_name contains author.first -%}
+            {%- if site.scholar.first_name contains author_first_name -%}
               {%- assign author_is_self = true -%}
             {%- endif -%}
+          {%- endif -%}
+          {%- comment -%} Alternative matching for "Nishad Singhi" specifically {%- endcomment -%}
+          {%- if author_last_name == "Singhi" and author_first_name == "Nishad" -%}
+            {%- assign author_is_self = true -%}
           {%- endif -%}
           {%- assign coauthor_url = nil -%}
           {%- if site.data.coauthors[author_last_name] -%}
@@ -72,7 +77,9 @@
             {%- if forloop.last and author_array_limit == author_array_size -%}and&nbsp;{%- endif -%}
           {%- endif -%}
           {%- if author_is_self -%}
-            <em>{{author.first}} {{author.last}}</em>
+            <strong>{{author.first}} {{author.last}}</strong>
+          {%- elsif author.last contains "Singhi" and author.first contains "Nishad" -%}
+            <strong>{{author.first}} {{author.last}}</strong>
           {%- else -%}
             {%- if coauthor_url -%}
               <a href="{{coauthor_url}}">{{author.first}} {{author.last}}</a>
@@ -141,7 +148,7 @@
         </div>
         {% if entry.award %}
         <div class="periodical">
-          <strong style="color: maroon;">{{ entry.award | strip }}</strong>
+          <strong class="award-text">{{ entry.award | strip }}</strong>
         </div>
         {% endif %}
         {% if entry.note %}

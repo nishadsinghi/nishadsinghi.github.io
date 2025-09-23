@@ -90,4 +90,9 @@ html[data-theme='dark'] {
   .repo-img-dark {
     display: block;
   }
+
+  // Award text styling for dark mode
+  .award-text {
+    color: #ffff66 !important; // Light yellow that's readable on dark backgrounds
+  }
 }
