@@ -17,6 +17,8 @@
   --global-divider-color: rgba(0,0,0,.1);
   --global-card-bg-color: #{$white-color};
 
+  --global-award-color: maroon;
+
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
   --global-tip-block-text: #215d42;
@@ -62,6 +64,8 @@ html[data-theme='dark'] {
   --global-divider-color: #424246;
   --global-card-bg-color: #{$grey-900};
 
+  --global-award-color: #ffff66;
+
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
   --global-tip-block-text: #215d42;
@@ -91,8 +95,4 @@ html[data-theme='dark'] {
     display: block;
   }
 
-  // Award text styling for dark mode
-  .award-text {
-    color: #ffff66 !important; // Light yellow that's readable on dark backgrounds
-  }
 }
