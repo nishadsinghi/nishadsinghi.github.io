@@ -575,7 +575,7 @@ permalink: /vegas/
       <div class="kicker">TL;DR</div>
       <h2>Sample many actions, verify, then act.</h2>
       <p class="lede">
-        We give embodied agents a moment to think. Instead of committing to the first action a multimodal LLM produces, we draw a handful of candidates and let a small, specifically trained verifier pick the most reliable one. The result: consistent gains on out-of-distribution embodied tasks (up to <b>+36% relative</b> on the hardest multi-object scenarios), with no change to the underlying policy.
+        We give embodied agents a moment to think. <em>At inference time</em>, instead of committing to the first action a multimodal LLM produces, we draw a handful of candidates and let a small, specifically trained verifier pick the most reliable one. The result: consistent gains on out-of-distribution embodied tasks (up to <b>+36% relative</b> on the hardest multi-object scenarios), with no change to the underlying policy.
       </p>
 
       <ul class="bullets">
@@ -610,7 +610,7 @@ permalink: /vegas/
       <div class="kicker">VeGAS</div>
       <h2>Verifier-Guided Action Selection.</h2>
       <p>
-        VeGAS runs entirely <em>at inference time</em>. At every timestep, the policy proposes <span class="mono">N</span> candidate actions, each with a chain-of-thought rationale. A separate <em>generative verifier</em> reads each candidate, writes its own short rationale, and emits a verdict (<span class="mono">yes</span> / <span class="mono">no</span>). We average <span class="mono">M</span> verdicts per candidate to get a stable score, then execute the highest-scoring action. No additional training is needed on top of the verifier; the base policy is untouched.
+        VeGAS runs entirely <em>at inference time</em>. At every timestep, the policy proposes <span class="mono">N</span> candidate actions, each with a chain-of-thought rationale. A separate <em>generative verifier</em> reads each candidate, writes its own short rationale, and emits a verdict (<span class="mono">yes</span> / <span class="mono">no</span>). We average <span class="mono">M</span> verdicts per candidate to get a stable score, then execute the highest-scoring action. The base policy is untouched.
       </p>
     </div>
   </section>
@@ -839,7 +839,7 @@ permalink: /vegas/
         <div class="kicker">Test-time compute</div>
         <h2>Verification scales; majority voting doesn&rsquo;t.</h2>
         <p>
-          A natural question: are the gains just from sampling more actions? We compare against self-consistency (majority vote over samples) under the <em>same</em> total compute budget. As we increase the number of candidate actions <span class="mono">N</span>, the verifier keeps turning extra samples into higher success rates, while majority voting plateaus.
+          A natural question: are the gains just from sampling more actions? We compare against self-consistency (majority vote over samples) under the <em>same</em> total compute budget. VeGAS scales much better, showing that a learned verifier is what unlocks test-time compute as a meaningful lever for embodied reasoning. Without it, extra samples buy you almost nothing.
         </p>
       </div>
 
