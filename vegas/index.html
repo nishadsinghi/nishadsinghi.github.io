@@ -56,6 +56,52 @@ permalink: /vegas/
     .wrap-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
     .wrap-table { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
+    /* ---- TOC nav ---- */
+    nav.toc {
+      position: fixed;
+      top: 50%;
+      left: 28px;
+      transform: translateY(-50%);
+      z-index: 40;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      max-height: 80vh;
+      overflow: auto;
+      padding: 8px 0;
+    }
+    nav.toc a {
+      display: block;
+      position: relative;
+      padding: 5px 0 5px 20px;
+      color: var(--muted);
+      border-bottom: 0;
+      letter-spacing: 0.01em;
+      transition: color .15s ease;
+    }
+    nav.toc a::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 1px;
+      background: var(--hairline-strong);
+      transition: width .18s ease, background .18s ease;
+    }
+    nav.toc a:hover { color: var(--ink); }
+    nav.toc a.active {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    nav.toc a.active::before {
+      width: 18px;
+      background: var(--accent);
+    }
+    @media (max-width: 1280px) {
+      nav.toc { display: none; }
+    }
+
     /* ---- Hero ---- */
     header.hero {
       padding: 64px 0 36px;
@@ -76,12 +122,12 @@ permalink: /vegas/
       opacity: 0.9;
     }
     .logos img.logo-cvpr { height: 44px; filter: invert(1); }
-    .logos img.logo-tuda { height: 52px; }
+    .logos img.logo-tuda { height: 70px; }
     @media (max-width: 600px) {
       .logos { gap: 24px; }
       .logos img { height: 30px; }
       .logos img.logo-cvpr { height: 34px; }
-      .logos img.logo-tuda { height: 40px; }
+      .logos img.logo-tuda { height: 52px; }
     }
     .eyebrow {
       font-family: var(--sans);
@@ -110,16 +156,16 @@ permalink: /vegas/
       margin: 6px 0 30px;
     }
     .authors {
-      font-size: 15.5px;
+      font-size: 17.5px;
       color: var(--ink-soft);
-      max-width: 640px;
+      max-width: 720px;
       margin: 0 auto 8px;
     }
     .authors .me { color: var(--accent); }
     .affil {
-      font-size: 13.5px;
+      font-size: 15px;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .actions {
@@ -324,17 +370,19 @@ permalink: /vegas/
       font-size: 18px;
       color: var(--ink);
       margin-bottom: 14px;
+      text-align: center;
     }
     .ex .frames {
       display: flex;
       gap: 12px;
       margin: 14px 0 18px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .ex .frames img {
-      flex: 1 1 0;
-      min-width: 180px;
-      max-width: 240px;
+      flex: 0 0 auto;
+      width: 160px;
+      height: auto;
       border-radius: 4px;
       border: 1px solid var(--hairline);
     }
@@ -399,6 +447,19 @@ permalink: /vegas/
 </head>
 
 <body>
+  <nav class="toc" aria-label="Section navigation">
+    <a href="#tldr">TL;DR</a>
+    <a href="#problem">Problem</a>
+    <a href="#method">Method</a>
+    <a href="#why-finetune">Why finetune?</a>
+    <a href="#training">Training</a>
+    <a href="#results">Results</a>
+    <a href="#transfer">Transfer</a>
+    <a href="#scaling">Scaling</a>
+    <a href="#qualitative">Examples</a>
+    <a href="#bibtex">BibTeX</a>
+  </nav>
+
   <header class="hero">
     <div class="wrap">
       <div class="logos">
@@ -447,7 +508,7 @@ permalink: /vegas/
   </section>
 
   <!-- TL;DR -->
-  <section>
+  <section id="tldr">
     <div class="wrap">
       <div class="kicker">TL;DR</div>
       <h2>Sample many actions, verify, then act.</h2>
@@ -465,7 +526,7 @@ permalink: /vegas/
   </section>
 
   <!-- The Problem -->
-  <section>
+  <section id="problem">
     <div class="wrap">
       <div class="kicker">The Problem</div>
       <h2>Strong models, brittle agents.</h2>
@@ -482,37 +543,37 @@ permalink: /vegas/
   </section>
 
   <!-- Method -->
-  <section>
+  <section id="method">
     <div class="wrap">
       <div class="kicker">VeGAS</div>
       <h2>Verifier-Guided Action Selection.</h2>
       <p>
-        At every timestep, the policy proposes <span class="mono">N</span> candidate actions, each with a chain-of-thought rationale. A separate <em>generative verifier</em> reads each candidate, writes its own short rationale, and emits a verdict (<span class="mono">yes</span> / <span class="mono">no</span>). We average <span class="mono">M</span> verdicts per candidate to get a stable score, then execute the highest-scoring action. The base policy is untouched.
+        VeGAS runs entirely <em>at inference time</em>. At every timestep, the policy proposes <span class="mono">N</span> candidate actions, each with a chain-of-thought rationale. A separate <em>generative verifier</em> reads each candidate, writes its own short rationale, and emits a verdict (<span class="mono">yes</span> / <span class="mono">no</span>). We average <span class="mono">M</span> verdicts per candidate to get a stable score, then execute the highest-scoring action. No additional training is needed on top of the verifier; the base policy is untouched.
       </p>
     </div>
   </section>
 
   <!-- Why finetune -->
-  <section>
+  <section id="why-finetune">
     <div class="wrap">
       <div class="kicker">A surprising finding</div>
       <h2>Off-the-shelf MLLMs are bad verifiers.</h2>
       <p>
-        Using the same MLLM as a zero-shot verifier doesn&rsquo;t help. In fact, it slightly hurts. General language understanding is not the same as the ability to judge whether <em>this</em> action, in <em>this</em> scene, advances the goal. Verification is a distinct skill, and it has to be learned.
+        Using the same MLLM as a zero-shot verifier doesn&rsquo;t help. In fact, it slightly hurts (see the <a href="#results">Zero-shot Verifier rows in the tables below</a>). General language understanding is not the same as the ability to judge whether <em>this</em> action, in <em>this</em> scene, advances the goal. Verification is a distinct skill, and it has to be learned.
       </p>
 
-      <figure class="frame">
+      <figure class="frame" style="max-width: 560px; margin-left: auto; margin-right: auto;">
         <img src="/assets/img/vegas/synthetic_data.png" alt="Synthetic failure example: starting from a correct 'find a TennisRacket' action, the pipeline injects a 'pick up the TennisRacket' mistake (precondition violation) and writes a verification rationale explaining why the action fails." />
         <figcaption>
-          <b>A synthetic failure, end-to-end.</b> The expert plans to <em>find</em> the racket first; our pipeline produces a tempting but wrong alternative (<em>pick</em> before <em>locate</em>) and explains exactly which precondition was violated. The verifier learns from many such examples.
+          <b>A synthetic failure, end-to-end.</b> The correct action is to <em>find</em> the racket first; our pipeline produces a tempting but wrong alternative (<em>pick</em> before <em>locate</em>) and explains exactly which precondition was violated. The verifier learns from many such examples.
         </figcaption>
       </figure>
     </div>
   </section>
 
   <!-- Verifier training pipeline -->
-  <section>
-    <div class="wrap-wide">
+  <section id="training">
+    <div class="wrap-table">
       <div class="wrap" style="padding: 0;">
         <div class="kicker">Training the verifier</div>
         <h2>From a few successes to a verifier that catches mistakes.</h2>
@@ -531,7 +592,7 @@ permalink: /vegas/
   </section>
 
   <!-- Results -->
-  <section>
+  <section id="results">
     <div class="wrap-table">
       <div class="wrap" style="padding: 0;">
         <div class="kicker">Results</div>
@@ -633,7 +694,7 @@ permalink: /vegas/
   </section>
 
   <!-- Small verifier, large policy -->
-  <section>
+  <section id="transfer">
     <div class="wrap-wide">
       <div class="wrap" style="padding: 0;">
         <div class="kicker">Transfer</div>
@@ -710,20 +771,20 @@ permalink: /vegas/
   </section>
 
   <!-- Scaling chart -->
-  <section>
+  <section id="scaling">
     <div class="wrap-wide">
       <div class="wrap" style="padding: 0;">
         <div class="kicker">Test-time compute</div>
-        <h2>Verification scales; voting doesn&rsquo;t.</h2>
+        <h2>Verification scales; majority voting doesn&rsquo;t.</h2>
         <p>
-          A natural question: are the gains just from sampling more actions? We compare against self-consistency (majority vote over samples) under the <em>same</em> total compute budget. Verification scales better.
+          A natural question: are the gains just from sampling more actions? We compare against self-consistency (majority vote over samples) under the <em>same</em> total compute budget. As we increase the number of candidate actions <span class="mono">N</span>, the verifier keeps turning extra samples into higher success rates, while majority voting plateaus.
         </p>
       </div>
 
       <figure>
-        <img src="/assets/img/vegas/scaling.png" alt="Scaling chart on EB-ALFRED comparing VeGAS to self-consistency. VeGAS rises from ~65% to ~72% as N grows; self-consistency stays near 65%." style="max-width: 720px; margin: 0 auto;"/>
+        <img src="/assets/img/vegas/scaling.png" alt="Scaling chart on EB-ALFRED comparing VeGAS to self-consistency. VeGAS rises as N grows; majority voting stays flat." style="max-width: 720px; margin: 0 auto;"/>
         <figcaption style="text-align:center;">
-          <b>Average success rate on LangR vs. number of candidate actions.</b> Same compute budget on both curves. The verifier is the lever that turns extra samples into accuracy.
+          <b>Average success rate on EB-ALFRED vs. number of candidate actions <span class="mono">N</span>.</b> Same compute budget on both curves. The verifier is the lever that turns extra samples into accuracy.
         </figcaption>
       </figure>
 
@@ -734,10 +795,9 @@ permalink: /vegas/
   </section>
 
   <!-- Qualitative examples -->
-  <section>
+  <section id="qualitative">
     <div class="wrap">
-      <div class="kicker">In the wild</div>
-      <h2>Catching subtle mistakes.</h2>
+      <h2>Qualitative examples.</h2>
 
       <div class="ex">
         <div class="instr"><b>Instruction:</b> Acquire a sports object and position it on the brown table.</div>
@@ -774,7 +834,7 @@ permalink: /vegas/
   </section>
 
   <!-- BibTeX -->
-  <section>
+  <section id="bibtex">
     <div class="wrap">
       <div class="kicker">Citation</div>
       <h2>BibTeX</h2>
@@ -812,6 +872,26 @@ permalink: /vegas/
         });
       });
     });
+
+    (function () {
+      var tocLinks = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+      var sections = tocLinks
+        .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+        .filter(function (s) { return s; });
+      if (!sections.length) return;
+      function setActive(id) {
+        tocLinks.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        var visible = entries
+          .filter(function (e) { return e.isIntersecting; })
+          .sort(function (a, b) { return a.target.offsetTop - b.target.offsetTop; });
+        if (visible.length) setActive(visible[0].target.id);
+      }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function (s) { observer.observe(s); });
+    })();
   </script>
 </body>
 </html>
