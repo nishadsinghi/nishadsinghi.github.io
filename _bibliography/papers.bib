@@ -3,6 +3,18 @@
 
 @string{aps = {American Physical Society,}}
 
+@InProceedings{Singhi_2026_CVPR,
+    abbr={CVPR},
+    arxiv={2605.12620},
+    website={https://nishadsinghi.github.io/vegas/},
+    code={https://github.com/nishadsinghi/vegas},
+    abstract={Building generalist embodied agents capable of solving complex real-world tasks remains a fundamental challenge in AI. Multimodal Large Language Models (MLLMs) have significantly advanced the reasoning capabilities of such agents through strong vision-language knowledge and chain-of-thought (CoT) reasoning, yet remain brittle when faced with challenging out-of-distribution scenarios. To address this, we propose Verifier-Guided Action Selection (VeGAS), a test-time framework designed to improve the robustness of MLLM-based embodied agents through an explicit verification step. At inference time, rather than committing to a single decoded action, VeGAS samples an ensemble of candidate actions and uses a generative verifier to identify the most reliable choice, without modifying the underlying policy. Crucially, we find that using an MLLM off-the-shelf as a verifier yields no improvement, motivating our LLM-driven data synthesis strategy, which automatically constructs a diverse curriculum of failure cases to expose the verifier to a rich distribution of potential errors at training time. Across embodied reasoning benchmarks spanning the Habitat and ALFRED environments, VeGAS consistently improves generalization, achieving up to a 36% relative performance gain over strong CoT baselines on the most challenging multi-object, long-horizon tasks.},
+    author    = {Singhi, Nishad and Bialas, Christian and Jauhri, Snehal and Prasad, Vignesh and Chalvatzaki, Georgia and Rohrbach, Marcus and Rohrbach, Anna},
+    title     = {Think Twice, Act Once: Verifier-Guided Action Selection for Embodied Agents},
+    booktitle = {Conference on Computer Vision and Pattern Recognition (CVPR), Findings},
+    year      = {2026},
+}
+
 @InProceedings{Singhi_2025_Preprint,
     abbr={CoLM},
     arxiv={2504.01005},
