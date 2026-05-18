@@ -1,7 +1,95 @@
----
-layout: page
-title: news
-permalink: /news/
----
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News · Nishad Singhi</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='15' fill='%232d3a78'%3E%E2%9D%A6%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('nb-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      var f = localStorage.getItem('nb-font') || 'spectral';
+      document.documentElement.setAttribute('data-font', f);
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar shell-wide">
+    <a class="mark" href="./">Nishad Singhi</a>
+    <nav>
+      <a href="./">about</a>
+      <a href="publications.html">papers</a>
+      <a href="news.html" class="active">news</a>
+      <a href="assets/pdf/Nishad_CV_1pg.pdf" target="_blank" rel="noopener">cv</a>
+      <button class="font-switch" id="fontSwitch" title="Cycle font pairing">Aa</button>
+      <button class="toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
 
-{% include news.html %}
+  <div class="shell">
+
+    <section class="page-head">
+      <h1>News.</h1>
+    </section>
+
+    <section class="block">
+      <ul class="news-list">
+        <li class="news-item">
+          <time>Apr '26</time>
+          <div class="body">Started an internship at Apple in Cupertino. Say hi if you're in the Bay Area! 👋</div>
+        </li>
+        <li class="news-item">
+          <time>Feb '26</time>
+          <div class="body">Our <a href="https://arxiv.org/abs/2605.12620">paper</a> on Verifier-Guided Action Selection for Embodied Agents is accepted to CVPR 2026 (Findings)! 🇺🇸</div>
+        </li>
+        <li class="news-item">
+          <time>Jul '25</time>
+          <div class="body"><a href="https://arxiv.org/abs/2504.01005">When to Solve, When to Verify</a> is accepted to CoLM 2025! 🇨🇦</div>
+        </li>
+        <li class="news-item">
+          <time>May '25</time>
+          <div class="body">Our <a href="https://arxiv.org/abs/2410.20268">paper</a> on a foundation model of human cognition is accepted to <em>Nature</em>!</div>
+        </li>
+        <li class="news-item">
+          <time>Jul '24</time>
+          <div class="body">Our <a href="https://arxiv.org/abs/2405.01531">paper</a> on Concept Realignment in CBMs is accepted to ECCV 2024! 🇮🇹</div>
+        </li>
+        <li class="news-item">
+          <time>Mar '24</time>
+          <div class="body">One <a href="https://openreview.net/forum?id=7bQmU2rukF">paper</a> accepted to the Re-Align workshop at ICLR 2024.</div>
+        </li>
+        <li class="news-item">
+          <time>Oct '23</time>
+          <div class="body">Presented <a href="https://arxiv.org/abs/2303.03323">CleanCLIP</a> as an Oral (Top 2%) at <a href="http://iccv2023.thecvf.com/">ICCV 2023</a>! 🇫🇷</div>
+        </li>
+        <li class="news-item">
+          <time>Jul '23</time>
+          <div class="body">Humbled to receive the <a href="https://cognitivesciencesociety.org/conference-awards/">Diversity and Inclusion Award</a> from the Society for Cognitive Science — among just 10 worldwide.</div>
+        </li>
+        <li class="news-item">
+          <time>Jul '23</time>
+          <div class="body">Presented two first-author papers at <a href="https://cognitivesciencesociety.org/cogsci-2023/">CogSci 2023</a>: <a href="https://arxiv.org/abs/2302.02633">Automatic Subgoal Discovery</a> (Oral) and <a href="https://escholarship.org/content/qt8p78p112/qt8p78p112.pdf">Loss Aversion</a> (full paper). 🇦🇺</div>
+        </li>
+        <li class="news-item">
+          <time>May '23</time>
+          <div class="body"><a href="https://arxiv.org/abs/2303.03323">CleanCLIP</a> won the Best Paper Award at the <a href="https://rtml-iclr2023.github.io/papers.html">RTML Workshop</a> at <a href="https://iclr.cc/Conferences/2023">ICLR 2023</a>!</div>
+        </li>
+      </ul>
+    </section>
+
+    <div style="height:5rem"></div>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

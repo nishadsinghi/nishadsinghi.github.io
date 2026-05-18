@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Papers · Nishad Singhi</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='15' fill='%232d3a78'%3E%E2%9D%A6%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('nb-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      var f = localStorage.getItem('nb-font') || 'spectral';
+      document.documentElement.setAttribute('data-font', f);
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar shell-wide">
+    <a class="mark" href="./">Nishad Singhi</a>
+    <nav>
+      <a href="./">about</a>
+      <a href="publications.html" class="active">papers</a>
+      <a href="news.html">news</a>
+      <a href="assets/pdf/Nishad_CV_1pg.pdf" target="_blank" rel="noopener">cv</a>
+      <button class="font-switch" id="fontSwitch" title="Cycle font pairing">Aa</button>
+      <button class="toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="shell">
+
+    <section class="page-head">
+      <h1>Papers.</h1>
+      <p class="sub">* equal contribution</p>
+    </section>
+
+    <div class="elsewhere">
+      <span>full list →</span>
+      <a href="https://scholar.google.com/citations?user=L1b6JqsAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+
+    <div class="pubs">
+
+      <section class="year-group">
+        <h3>2026</h3>
+        <article class="pub featured" id="vegas">
+
+          <div class="pub-venue">CVPR</div>
+          <div>
+            <h4 class="pub-title">Think Twice, Act Once: Verifier-Guided Action Selection for Embodied Agents</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi</span>, Christian Bialas, Snehal Jauhri, Vignesh Prasad, Georgia Chalvatzaki, Marcus Rohrbach, Anna Rohrbach</p>
+            <p class="pub-meta">Conference on Computer Vision and Pattern Recognition (CVPR), Findings — 2026</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Instead of committing to a single decoded action, we sample multiple candidate actions and use a trained generative verifier to select the best one. Up to 36% relative improvement on long-horizon embodied tasks without retraining the policy.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2605.12620">arXiv</a><span class="sep">·</span><a href="https://nishadsinghi.github.io/vegas/">website</a><span class="sep">·</span><a href="https://github.com/nishadsinghi/vegas">code</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="year-group">
+        <h3>2025</h3>
+        <article class="pub featured" id="wtswtv">
+          <div class="pub-venue">CoLM</div>
+          <div>
+            <h4 class="pub-title">When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi*</span>, Hritik Bansal*, Arian Hosseini*, Aditya Grover, Kai-Wei Chang, Marcus Rohrbach, Anna Rohrbach</p>
+            <p class="pub-meta">Conference on Language Modeling (CoLM) — 2025</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Under a fixed inference budget, we compare scaling solutions (self-consistency) vs. scaling verification chains (GenRM). Self-consistency is more compute-efficient at most practical budgets; GenRM requires up to 8× the compute to match it. We derive inference-scaling laws for the optimal trade-off.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2504.01005">arXiv</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub" id="centaur">
+          <div class="pub-venue">Nature</div>
+          <div>
+            <h4 class="pub-title">A foundation model to predict and capture human cognition</h4>
+            <p class="pub-authors">Marcel Binz, … <span class="me">Nishad Singhi</span>, … Eric Schulz</p>
+            <p class="pub-meta">Nature — 2025</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Centaur is a language model fine-tuned on Psych-101, a dataset of over 10 million choices from 60,000+ participants across 160 experiments. It predicts held-out human behavior better than existing cognitive models and generalizes to new cover stories, structural task modifications, and new domains.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2410.20268">arXiv</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="year-group">
+        <h3>2024</h3>
+        <article class="pub" id="cbm">
+          <div class="pub-venue">ECCV</div>
+          <div>
+            <h4 class="pub-title">Improving Intervention Efficacy via Concept Realignment in Concept Bottleneck Models</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi</span>, Karsten Roth, Jae Myung Kim, Zeynep Akata</p>
+            <p class="pub-meta">European Conference on Computer Vision (ECCV) — 2024</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Concept Bottleneck Models treat concepts independently during human interventions. We realign concept assignments post-intervention using the statistical relationships between them, improving both classification and concept accuracy with fewer human edits per image. The method integrates into existing CBM architectures without modification.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2405.01531">arXiv</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="year-group">
+        <h3>2023</h3>
+        <article class="pub featured" id="cleanclip">
+          <div class="pub-venue">ICCV</div>
+          <div>
+            <h4 class="pub-title">CleanCLIP: Mitigating Data Poisoning Attacks in Multimodal Contrastive Learning</h4>
+            <p class="pub-authors">Hritik Bansal*, <span class="me">Nishad Singhi*</span>, Yu Yang, Fan Yin, Aditya Grover, Kai-Wei Chang</p>
+            <p class="pub-meta">International Conference on Computer Vision (ICCV) — 2023</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> CLIP is susceptible to data-poisoning backdoor attacks: as few as 75 poisoned pairs in 3M can manipulate its behavior. Fine-tuning with a combination of multimodal contrastive and per-modality self-supervised losses re-decorrelates the trigger from the target label and mitigates the attack while preserving clean performance.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2303.03323">arXiv</a><span class="sep">·</span><a href="https://github.com/nishadsinghi/CleanCLIP">code</a>
+            </div>
+            <p class="pub-award">🏆 Oral (Top 2%) · Best Paper, RTML @ ICLR 2023</p>
+          </div>
+        </article>
+
+        <article class="pub" id="subgoals">
+          <div class="pub-venue">CogSci</div>
+          <div>
+            <h4 class="pub-title">Toward a normative theory of (self-) management by goal-setting</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi</span>, Florian Mohnert, Ben Prystawski, Falk Lieder</p>
+            <p class="pub-meta">Proceedings of the Annual Meeting of the Cognitive Science Society — 2023</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> We formulate a resource-rational theory of (self-)management by goal-setting and computationally derive optimal subgoals from a model of bounded human goal-pursuit. The derived subgoals improve problem-solving performance for both simulated agents and human participants.</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2302.02633">arXiv</a>
+            </div>
+            <p class="pub-award">🏆 Oral · Diversity and Inclusion Award</p>
+          </div>
+        </article>
+
+        <article class="pub" id="loss-aversion">
+          <div class="pub-venue">CogSci</div>
+          <div>
+            <h4 class="pub-title">Using Computational Models to Understand the Role and Nature of Valuation Bias in Mixed Gambles</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi</span>, Sumeet Agarwal, Sumitava Mukherjee</p>
+            <p class="pub-meta">Proceedings of the Annual Meeting of the Cognitive Science Society — 2023</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Re-analyzing three previously published mixed-gamble datasets with the drift-diffusion model, we find that a pre-valuation rejection bias plays a substantial role alongside valuation bias. A leaky competing-accumulator model further shows that an attentional bias toward losses can produce behavior indistinguishable from valuation bias.</p>
+            <div class="pub-links">
+              <a href="https://escholarship.org/content/qt8p78p112/qt8p78p112.pdf">PDF</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub" id="fmri">
+          <div class="pub-venue">PuG</div>
+          <div>
+            <h4 class="pub-title">Motivated With Joy or Anxiety: Does Approach-Avoidance Goal Framing Elicit Differential Reward-Network Activation In The Brain?</h4>
+            <p class="pub-authors"><span class="me">Nishad Singhi</span>, Michiko Sakaki, Kou Murayama, Madoka Matsumoto, Keise Izuma, Yukihito Yomogida, Ayaka Sugiura, Ryuta Aoki, Kenji Matsumoto</p>
+            <p class="pub-meta">Psychologie und Gehirn — 2023</p>
+            <p class="pub-tldr"><span class="lbl">tl;dr —</span> Using fMRI on a game-like, intrinsically motivating task, we find that the striatum activates after successful outcomes regardless of whether the goal is framed as approach or avoidance — suggesting it encodes general motivation or effort rather than positive motivational state. The hippocampus instead tracks salient outcomes (success under approach, failure under avoidance).</p>
+            <div class="pub-links">
+              <a href="https://drive.google.com/file/d/1KH6NVtec8VZ-Ih1ALupgekJ5l3tTsqUb/view?usp=sharing">PDF</a><span class="sep">·</span><a href="https://drive.google.com/file/d/1EXm_00GahW9R5xUy9dYqABqVQTWApOBD/view?usp=sharing">poster</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+    </div>
+
+    <div style="height:5rem"></div>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
