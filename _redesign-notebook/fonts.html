@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hand-font samples</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='15' fill='%23b34a2a'%3E%E2%9D%A6%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300..600;1,300..600&family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&family=Architects+Daughter&family=Homemade+Apple&family=Patrick+Hand&family=Indie+Flower&family=Shadows+Into+Light&family=Sacramento&family=La+Belle+Aurore&family=Special+Elite&family=Permanent+Marker&family=Reenie+Beanie&family=Just+Another+Hand&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:    #f4eedf;
+      --paper-2:  #ecdfc4;
+      --ink:      #2a2419;
+      --ink-soft: #4a4133;
+      --ink-mute: #6e5e44;
+      --rule:     #2a241926;
+      --accent:   #b34a2a;
+      --accent-soft: #b34a2a1f;
+      --highlight: #ffe6a0;
+      --sticky-bg: #fff3b0;
+      --serif:    'Spectral', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      background-image:
+        radial-gradient(circle at 0% 0%, #fff7e640 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, #c9b78a30 0%, transparent 45%);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.55;
+      padding: 3rem clamp(1rem, 4vw, 3rem) 6rem;
+    }
+    .wrap { max-width: 72rem; margin: 0 auto; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+    .back {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-mute);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rule);
+      padding-bottom: 1px;
+      font-size: 1rem;
+    }
+    .back:hover { color: var(--accent); }
+    h1 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+      letter-spacing: -0.01em;
+      margin: 0.5rem 0 0.4rem;
+    }
+    .intro {
+      color: var(--ink-mute);
+      font-size: 1.05rem;
+      max-width: 50rem;
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 900px)  { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1400px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+    .card {
+      background: #ffffff60;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.25rem 1.4rem 1.6rem;
+      position: relative;
+      transition: border-color 200ms ease, background 200ms ease;
+    }
+    .card:hover { border-color: var(--accent); background: #ffffffaa; }
+    .card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed var(--rule);
+    }
+    .card .meta .name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+    .card .meta .tag {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-mute);
+      font-size: 0.85rem;
+    }
+
+    /* sample elements use a per-card CSS variable */
+    .samp {
+      --hand: var(--serif);
+    }
+    .samp .h1 {
+      font-family: var(--hand);
+      font-size: 2rem;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
+    }
+    .samp .h1 em { color: var(--accent); font-style: normal; }
+    .samp .tag {
+      font-family: var(--hand);
+      color: var(--accent);
+      font-size: 1.3rem;
+      line-height: 1;
+      margin-bottom: 0.85rem;
+    }
+    .samp .margin {
+      font-family: var(--hand);
+      font-size: 1.2rem;
+      color: var(--accent);
+      line-height: 1.25;
+      padding: 0.35rem 0 0.35rem 0.8rem;
+      border-left: 2px solid var(--accent);
+      transform: rotate(-0.8deg);
+      margin: 0.5rem 0 0.9rem;
+    }
+    .samp .sticky {
+      display: inline-block;
+      background: var(--sticky-bg);
+      color: #2a2419;
+      padding: 0.4rem 0.8rem;
+      transform: rotate(-1.5deg);
+      box-shadow: 1px 2px 5px #00000026;
+      font-family: var(--hand);
+      font-size: 1.2rem;
+      line-height: 1.25;
+      margin: 0.4rem 0 0.9rem;
+    }
+    .samp .row {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+      font-family: var(--hand);
+      font-size: 1.15rem;
+      color: var(--ink-soft);
+      margin-top: 0.6rem;
+    }
+    .samp .row .time { color: var(--accent); white-space: nowrap; }
+    .samp .row .pubrow .venue { color: var(--accent); margin-right: 0.5rem; }
+
+    .body-prose {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      color: var(--ink-soft);
+      margin-top: 0.9rem;
+      line-height: 1.55;
+    }
+    .body-prose strong { font-weight: 600; }
+
+    /* per-card font overrides */
+    .card[data-font="caveat"]            .samp { --hand: 'Caveat', cursive; }
+    .card[data-font="kalam"]             .samp { --hand: 'Kalam', cursive; }
+    .card[data-font="architects"]        .samp { --hand: 'Architects Daughter', cursive; }
+    .card[data-font="homemade"]          .samp { --hand: 'Homemade Apple', cursive; }
+    .card[data-font="patrick"]           .samp { --hand: 'Patrick Hand', cursive; }
+    .card[data-font="indie"]             .samp { --hand: 'Indie Flower', cursive; }
+    .card[data-font="shadows"]           .samp { --hand: 'Shadows Into Light', cursive; }
+    .card[data-font="sacramento"]        .samp { --hand: 'Sacramento', cursive; }
+    .card[data-font="labelle"]           .samp { --hand: 'La Belle Aurore', cursive; }
+    .card[data-font="elite"]             .samp { --hand: 'Special Elite', monospace; }
+    .card[data-font="marker"]            .samp { --hand: 'Permanent Marker', cursive; }
+    .card[data-font="reenie"]            .samp { --hand: 'Reenie Beanie', cursive; }
+    .card[data-font="just"]              .samp { --hand: 'Just Another Hand', cursive; }
+    .card[data-font="gloria"]            .samp { --hand: 'Gloria Hallelujah', cursive; }
+
+    /* italic-spectral fallback (no handwriting) */
+    .card[data-font="spectral"] .samp { --hand: 'Spectral', Georgia, serif; }
+    .card[data-font="spectral"] .samp .tag,
+    .card[data-font="spectral"] .samp .margin,
+    .card[data-font="spectral"] .samp .sticky,
+    .card[data-font="spectral"] .samp .row { font-style: italic; font-weight: 400; }
+    .card[data-font="spectral"] .samp .tag,
+    .card[data-font="spectral"] .samp .row .time,
+    .card[data-font="spectral"] .samp .row .venue { font-variant: small-caps; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="back" href="./">← back to notebook site</a>
+      <span class="back" style="border:none">light · paper background</span>
+    </div>
+    <h1>Hand-font samples.</h1>
+    <p class="intro">Every card uses the same sample elements from the notebook site (margin note, sticky note, time tags, mark, P.S., venue). Compare in context. The current notebook font is <em>Caveat</em>. The last card drops handwriting entirely in favour of italic Spectral.</p>
+
+    <div class="grid">
+
+      <!-- CURRENT -->
+      <div class="card" data-font="caveat">
+        <div class="meta"><span class="name">Caveat <em>(current)</em></span><span class="tag">friendly · round · close to comic-sans territory</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- KALAM -->
+      <div class="card" data-font="kalam">
+        <div class="meta"><span class="name">Kalam</span><span class="tag">refined · balanced · modern hand</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- ARCHITECTS DAUGHTER -->
+      <div class="card" data-font="architects">
+        <div class="meta"><span class="name">Architects Daughter</span><span class="tag">geometric · designer-y · blueprint hand</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- HOMEMADE APPLE -->
+      <div class="card" data-font="homemade">
+        <div class="meta"><span class="name">Homemade Apple</span><span class="tag">slanted cursive · letter-to-a-friend</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- PATRICK HAND -->
+      <div class="card" data-font="patrick">
+        <div class="meta"><span class="name">Patrick Hand</span><span class="tag">clean · balanced · evenly weighted hand</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- INDIE FLOWER -->
+      <div class="card" data-font="indie">
+        <div class="meta"><span class="name">Indie Flower</span><span class="tag">round but lighter than Caveat</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- SHADOWS INTO LIGHT -->
+      <div class="card" data-font="shadows">
+        <div class="meta"><span class="name">Shadows Into Light</span><span class="tag">airy · thin · slightly leaning</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- REENIE BEANIE -->
+      <div class="card" data-font="reenie">
+        <div class="meta"><span class="name">Reenie Beanie</span><span class="tag">casual scribble · whimsical</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- JUST ANOTHER HAND -->
+      <div class="card" data-font="just">
+        <div class="meta"><span class="name">Just Another Hand</span><span class="tag">tall · narrow · architect-meets-doctor</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- GLORIA HALLELUJAH -->
+      <div class="card" data-font="gloria">
+        <div class="meta"><span class="name">Gloria Hallelujah</span><span class="tag">teenagery · loopy · diary-ish</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- SACRAMENTO -->
+      <div class="card" data-font="sacramento">
+        <div class="meta"><span class="name">Sacramento</span><span class="tag">brush calligraphy · elegant flourish</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- LA BELLE AURORE -->
+      <div class="card" data-font="labelle">
+        <div class="meta"><span class="name">La Belle Aurore</span><span class="tag">cursive · loopy · romantic</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- SPECIAL ELITE -->
+      <div class="card" data-font="elite">
+        <div class="meta"><span class="name">Special Elite</span><span class="tag">old typewriter · zine-ish · ink-bled</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- PERMANENT MARKER -->
+      <div class="card" data-font="marker">
+        <div class="meta"><span class="name">Permanent Marker</span><span class="tag">thick sharpie · bold · loud</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+      <!-- SPECTRAL ITALIC (no hand font) -->
+      <div class="card" data-font="spectral">
+        <div class="meta"><span class="name">Italic Spectral <em>(drop hand font)</em></span><span class="tag">refined · editorial · loses the warmth</span></div>
+        <div class="samp">
+          <div class="h1">Hi, I'm Nishad. <em>— and yes, the dosa is non-negotiable.</em></div>
+          <div class="tag">— a little tagline in handwriting —</div>
+          <div class="margin">currently in Cupertino — say hi if you're around!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple in Cupertino.</span></div>
+          <div class="row"><span class="pubrow"><span class="venue">CVPR</span>tl;dr — Verifier-guided action selection for embodied agents.</span></div>
+          <div class="body-prose">Body text stays in <strong>Spectral</strong> regardless — only the accent glyphs swap.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

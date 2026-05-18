@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color-scheme samples</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='15' fill='%23b34a2a'%3E%E2%9D%A6%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300..600;1,300..600&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --serif: 'Spectral', Georgia, serif;
+      --hand:  'Kalam', cursive;
+      --bg-page: #efe9da;
+      --ink-page: #2a2419;
+      --mute-page: #6e5e44;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg-page);
+      color: var(--ink-page);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.55;
+      padding: 3rem clamp(1rem, 4vw, 3rem) 6rem;
+    }
+    .wrap { max-width: 78rem; margin: 0 auto; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+    .back {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--mute-page);
+      text-decoration: none;
+      border-bottom: 1px dashed #00000022;
+      padding-bottom: 1px;
+      font-size: 1rem;
+    }
+    .back:hover { color: #b34a2a; }
+    h1 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+      letter-spacing: -0.01em;
+      margin: 0.5rem 0 0.4rem;
+    }
+    .intro {
+      color: var(--mute-page);
+      font-size: 1.05rem;
+      max-width: 56rem;
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    @media (min-width: 920px)  { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1400px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+    /* ---------------- per-card palette via inline style ---------------- */
+    .card {
+      background: var(--paper);
+      background-image:
+        radial-gradient(circle at 0% 0%, #fff7e640 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, #00000010 0%, transparent 45%);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.3rem 1.45rem 1.6rem;
+      position: relative;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    .card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed var(--rule);
+    }
+    .card .meta .name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+    .card .meta .swatch {
+      display: inline-flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
+    .card .meta .swatch span {
+      width: 0.95rem;
+      height: 0.95rem;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid #00000018;
+    }
+
+    .samp .h1 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.85rem;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+    .samp .h1 .accent { color: var(--accent); font-style: normal; }
+    .samp .tag {
+      font-family: var(--hand);
+      color: var(--accent);
+      font-size: 1.25rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .samp .prose {
+      font-family: var(--serif);
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      margin: 0.4rem 0 0.9rem;
+      line-height: 1.55;
+    }
+    .samp .prose a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+    }
+    .samp .prose .hl {
+      background: linear-gradient(transparent 60%, var(--highlight) 60%, var(--highlight) 92%, transparent 92%);
+      padding: 0 0.05em;
+    }
+    .samp .margin {
+      font-family: var(--hand);
+      font-size: 1.15rem;
+      color: var(--accent);
+      line-height: 1.25;
+      padding: 0.35rem 0 0.35rem 0.8rem;
+      border-left: 2px solid var(--accent);
+      transform: rotate(-0.8deg);
+      margin: 0.5rem 0 0.9rem;
+    }
+    .samp .sticky {
+      display: inline-block;
+      background: var(--sticky);
+      color: #2a2419;
+      padding: 0.35rem 0.75rem;
+      transform: rotate(-1.5deg);
+      box-shadow: 1px 2px 5px #00000026;
+      font-family: var(--hand);
+      font-size: 1.15rem;
+      line-height: 1.25;
+      margin: 0.4rem 0 0.9rem;
+    }
+    .samp .row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+      font-family: var(--hand);
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+    }
+    .samp .row .time, .samp .row .venue { color: var(--accent); }
+    .samp .pubrow {
+      margin-top: 0.55rem;
+      padding-top: 0.55rem;
+      border-top: 1px dashed var(--rule);
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+    .samp .pubrow .venue {
+      font-family: var(--hand);
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin-right: 0.5rem;
+    }
+    .samp .pubrow .me {
+      color: var(--accent);
+      font-weight: 600;
+      background: linear-gradient(transparent 60%, var(--highlight) 60%, var(--highlight) 92%, transparent 92%);
+      padding: 0 0.1em;
+    }
+    .samp .dark-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 4px;
+      background: var(--dark-bg);
+      color: var(--dark-ink);
+      font-family: var(--hand);
+      font-size: 1.05rem;
+    }
+    .samp .dark-strip .dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--dark-accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="back" href="./">← back to notebook site</a>
+      <a class="back" href="fonts.html">→ font samples</a>
+    </div>
+    <h1>Color-scheme samples.</h1>
+    <p class="intro">Same notebook elements rendered in 10 palettes. All cards use <em>Kalam</em> for the hand. The slim dark strip at the bottom of each card previews how the palette translates to dark mode (bg + accent dot).</p>
+
+    <div class="grid">
+
+      <!-- 1. WARM PAPER · TERRACOTTA (current) -->
+      <div class="card" style="
+        --paper:#f4eedf; --ink:#2a2419; --ink-soft:#4a4133; --rule:#2a241926;
+        --accent:#b34a2a; --highlight:#ffe6a0; --sticky:#fff3b0;
+        --dark-bg:#15120d; --dark-ink:#f1e6cf; --dark-accent:#e89673;">
+        <div class="meta">
+          <span class="name">01 · Warm Paper · Terracotta <em style="color:var(--accent)">(current)</em></span>
+          <span class="swatch"><span style="background:#f4eedf"></span><span style="background:#b34a2a"></span><span style="background:#fff3b0"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 2. VELLUM · INK BLUE -->
+      <div class="card" style="
+        --paper:#f5efe1; --ink:#1c1a17; --ink-soft:#3a3530; --rule:#1c1a1722;
+        --accent:#2a4d8f; --highlight:#ffe7a8; --sticky:#fff1a8;
+        --dark-bg:#0f1320; --dark-ink:#e6e8ef; --dark-accent:#8db1e8;">
+        <div class="meta">
+          <span class="name">02 · Vellum · Ink Blue</span>
+          <span class="swatch"><span style="background:#f5efe1"></span><span style="background:#2a4d8f"></span><span style="background:#fff1a8"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 3. LINEN · SAGE -->
+      <div class="card" style="
+        --paper:#ece8d4; --ink:#23261d; --ink-soft:#3e4233; --rule:#23261d22;
+        --accent:#5e7a4f; --highlight:#fce99a; --sticky:#fdf2a3;
+        --dark-bg:#11140e; --dark-ink:#e4e8d8; --dark-accent:#a5bd8f;">
+        <div class="meta">
+          <span class="name">03 · Linen · Sage</span>
+          <span class="swatch"><span style="background:#ece8d4"></span><span style="background:#5e7a4f"></span><span style="background:#fdf2a3"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 4. EGGSHELL · BURGUNDY -->
+      <div class="card" style="
+        --paper:#f0e7d2; --ink:#241b1e; --ink-soft:#3e2d33; --rule:#241b1e22;
+        --accent:#8a2a4a; --highlight:#ffd6c8; --sticky:#ffdec0;
+        --dark-bg:#180e12; --dark-ink:#ecdadb; --dark-accent:#d27a93;">
+        <div class="meta">
+          <span class="name">04 · Eggshell · Burgundy</span>
+          <span class="swatch"><span style="background:#f0e7d2"></span><span style="background:#8a2a4a"></span><span style="background:#ffdec0"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 5. SAND · OLIVE -->
+      <div class="card" style="
+        --paper:#ece2c4; --ink:#2a2818; --ink-soft:#4a4632; --rule:#2a281822;
+        --accent:#6e7a30; --highlight:#fff09a; --sticky:#fff39a;
+        --dark-bg:#15140c; --dark-ink:#e9e5cf; --dark-accent:#bbc36e;">
+        <div class="meta">
+          <span class="name">05 · Sand · Olive</span>
+          <span class="swatch"><span style="background:#ece2c4"></span><span style="background:#6e7a30"></span><span style="background:#fff39a"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 6. CREAM · AUBERGINE -->
+      <div class="card" style="
+        --paper:#f3ead7; --ink:#22181f; --ink-soft:#3e3239; --rule:#22181f22;
+        --accent:#5a3a6b; --highlight:#fadcae; --sticky:#f9d8b4;
+        --dark-bg:#140d18; --dark-ink:#e8dde9; --dark-accent:#c098ce;">
+        <div class="meta">
+          <span class="name">06 · Cream · Aubergine</span>
+          <span class="swatch"><span style="background:#f3ead7"></span><span style="background:#5a3a6b"></span><span style="background:#f9d8b4"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 7. STONE · SLATE -->
+      <div class="card" style="
+        --paper:#e8e4d8; --ink:#1f2227; --ink-soft:#3a3f49; --rule:#1f222722;
+        --accent:#3e4a5a; --highlight:#fbe7a2; --sticky:#fcefae;
+        --dark-bg:#10131a; --dark-ink:#e1e4eb; --dark-accent:#9aaab8;">
+        <div class="meta">
+          <span class="name">07 · Stone · Slate</span>
+          <span class="swatch"><span style="background:#e8e4d8"></span><span style="background:#3e4a5a"></span><span style="background:#fcefae"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 8. BONE · PERSIMMON -->
+      <div class="card" style="
+        --paper:#f4ead5; --ink:#2a1f18; --ink-soft:#4a382c; --rule:#2a1f1822;
+        --accent:#d05a3a; --highlight:#ffe6a0; --sticky:#fff1a8;
+        --dark-bg:#14100b; --dark-ink:#eedfca; --dark-accent:#f0997a;">
+        <div class="meta">
+          <span class="name">08 · Bone · Persimmon</span>
+          <span class="swatch"><span style="background:#f4ead5"></span><span style="background:#d05a3a"></span><span style="background:#fff1a8"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 9. EGGSHELL · INDIGO -->
+      <div class="card" style="
+        --paper:#efe7d2; --ink:#181a25; --ink-soft:#2e3349; --rule:#181a2522;
+        --accent:#2d3a78; --highlight:#ffe19a; --sticky:#fff0a8;
+        --dark-bg:#0c0e18; --dark-ink:#e2e4ef; --dark-accent:#8d9bd6;">
+        <div class="meta">
+          <span class="name">09 · Eggshell · Indigo</span>
+          <span class="swatch"><span style="background:#efe7d2"></span><span style="background:#2d3a78"></span><span style="background:#fff0a8"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+      <!-- 10. MIST · MULBERRY -->
+      <div class="card" style="
+        --paper:#ecdfd6; --ink:#241b22; --ink-soft:#3e2d38; --rule:#241b2222;
+        --accent:#9a3b6c; --highlight:#ffd6c8; --sticky:#fde0c2;
+        --dark-bg:#1a0f16; --dark-ink:#ebd9dd; --dark-accent:#d287ab;">
+        <div class="meta">
+          <span class="name">10 · Mist · Mulberry</span>
+          <span class="swatch"><span style="background:#ecdfd6"></span><span style="background:#9a3b6c"></span><span style="background:#fde0c2"></span></span>
+        </div>
+        <div class="samp">
+          <div class="h1">Hi, I'm <span class="accent">Nishad.</span></div>
+          <div class="prose">Currently interning at <span class="hl"><strong>Apple MLR</strong></span> with Alex Toshev and Andrew Szot. ELLIS PhD on embodied AI &amp; agents.</div>
+          <div class="margin">currently in Cupertino — say hi!</div>
+          <div class="sticky">P.S. always up for badminton ✦</div>
+          <div class="row"><span class="time">Apr '26</span><span>Started an internship at Apple.</span></div>
+          <div class="pubrow"><span class="venue">CVPR</span><span class="me">Nishad Singhi</span> et al. — Think Twice, Act Once.</div>
+          <div class="dark-strip"><span class="dot"></span>dark mode preview</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nishad.singhi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0e0c;
+      --ink: #e8e6df;
+      --mute: #7f8278;
+      --accent: #c8ff5a;
+      --rule: #2a2c28;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      padding: 2.5rem clamp(1rem, 4vw, 4rem);
+      max-width: 920px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed transparent; }
+    a:hover { border-bottom-color: var(--accent); }
+    .row { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--mute); margin-bottom: 3rem; }
+    .row nav a { color: var(--mute); margin-right: 1rem; }
+    .row nav a:hover { color: var(--accent); }
+    .prompt { color: var(--mute); }
+    .prompt::before { content: '$ '; color: var(--accent); }
+
+    h1 {
+      font-size: clamp(1.4rem, 1rem + 2vw, 2rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.4rem;
+    }
+    h1 .cursor {
+      display: inline-block;
+      width: 0.5em;
+      height: 1.05em;
+      background: var(--accent);
+      vertical-align: -0.18em;
+      margin-left: 0.2em;
+      animation: blink 1.05s steps(2) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .role { color: var(--mute); font-size: 0.92rem; margin-bottom: 2.5rem; }
+
+    .section { margin: 2.2rem 0; }
+    .section h2 {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.9rem;
+    }
+    .section h2::before { content: '## '; color: var(--mute); }
+    p { margin: 0 0 0.9em; max-width: 64ch; }
+
+    .key { color: var(--mute); display: inline-block; min-width: 7rem; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    ul li { margin: 0.35rem 0; }
+    ul li::before { content: '· '; color: var(--mute); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+    }
+    .grid div::before { content: '> '; color: var(--accent); margin-right: 0.3rem; }
+
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      color: var(--mute);
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    img.pf { width: 96px; height: 96px; border-radius: 50%; filter: grayscale(50%); border: 1px solid var(--rule); }
+    .top { display: flex; gap: 1.5rem; align-items: flex-end; margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="prompt">~/nishad-singhi</div>
+    <nav>
+      <a href="#">about</a>
+      <a href="#">publications</a>
+      <a href="#">news</a>
+      <a href="#">cv</a>
+    </nav>
+  </div>
+
+  <div class="top">
+    <img class="pf" src="prof_pic.jpg" alt="">
+    <div>
+      <h1>nishad singhi<span class="cursor"></span></h1>
+      <div class="role">phd_student · ellis · @apple_mlr (intern)</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>whoami</h2>
+    <p>ELLIS PhD student working with <a href="#">Anna Rohrbach</a> and <a href="#">Marcus Rohrbach</a>. Collaborating on <a href="#">OpenThoughts-Agent</a> under <a href="#">Ludwig Schmidt</a>. Currently interning at Apple MLR with <a href="#">Alex Toshev</a> and <a href="#">Andrew Szot</a>.</p>
+  </div>
+
+  <div class="section">
+    <h2>interests</h2>
+    <div class="grid">
+      <div>embodied AI</div>
+      <div>agents</div>
+      <div>reasoning</div>
+      <div>multimodality</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>history</h2>
+    <ul>
+      <li><span class="key">2026 →</span> Apple MLR, Cupertino</li>
+      <li><span class="key">2024 →</span> ELLIS PhD, Tübingen / Darmstadt</li>
+      <li><span class="key">2022–24</span> MPI-IS · UCLA</li>
+      <li><span class="key">2018–22</span> IIT Delhi (B.Tech)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>recent</h2>
+    <ul>
+      <li>VeGAS → CVPR 2026 (Findings)</li>
+      <li>When To Solve, When To Verify → CoLM 2025</li>
+      <li>Centaur → <i>Nature</i></li>
+      <li>CBM Realignment → ECCV 2024</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <span>last_commit: 2026-05</span>
+    <span>theme: charcoal · lime</span>
+  </div>
+</body>
+</html>

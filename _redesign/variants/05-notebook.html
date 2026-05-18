@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nishad — notebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300..600;1,300..600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4eedf;
+      --paper-2: #ecdfc4;
+      --ink: #2a2419;
+      --mute: #6e5e44;
+      --accent: #b34a2a;
+      --rule: #2a241926;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      background-image:
+        radial-gradient(circle at 0% 0%, #fff7e6 0%, transparent 35%),
+        radial-gradient(circle at 100% 100%, #e9d8b3 0%, transparent 40%);
+      color: var(--ink);
+      font-family: 'Spectral', Georgia, serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .page {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 5rem;
+      position: relative;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--rule);
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
+      color: var(--mute);
+    }
+    .top .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      margin-left: 1.4rem;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+    .top .nav a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+    .top .date { font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--accent); }
+
+    h1 {
+      font-family: 'Spectral', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.8rem, 5vw + 1rem, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.6rem;
+    }
+    .hand {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      color: var(--accent);
+      line-height: 1.2;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+
+    .twocol {
+      display: grid;
+      grid-template-columns: 1fr 16rem;
+      gap: 3rem;
+      align-items: start;
+    }
+    .prose p { font-size: 1.05rem; margin: 0 0 1.05em; }
+    .prose a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    .polaroid {
+      background: #fffaf0;
+      padding: 0.7rem 0.7rem 2.6rem;
+      box-shadow: 0 1px 0 #00000010, 0 18px 28px -18px #00000060;
+      transform: rotate(3deg);
+      max-width: 14rem;
+      margin: 0 auto 1.5rem;
+      transition: transform 280ms ease;
+      position: relative;
+    }
+    .polaroid::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 70px;
+      height: 18px;
+      background: #d8c89e90;
+      border: 1px solid #b5a47540;
+    }
+    .polaroid:hover { transform: rotate(0deg) scale(1.02); }
+    .polaroid img { width: 100%; display: block; filter: sepia(8%) saturate(0.9); }
+    .polaroid .cap {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    .margin-note {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      color: var(--accent);
+      line-height: 1.2;
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-left: 2px solid var(--accent);
+      transform: rotate(-1deg);
+      margin: 1rem 0;
+    }
+
+    .sticky {
+      display: inline-block;
+      background: #fff3b0;
+      padding: 0.4rem 0.8rem;
+      transform: rotate(-2deg);
+      box-shadow: 1px 2px 4px #00000020;
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin: 0.8rem 0;
+    }
+
+    h2 {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.6rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--ink);
+    }
+    h2::before { content: '§ '; color: var(--accent); }
+
+    ul.entries { list-style: none; padding: 0; margin: 0; }
+    ul.entries li {
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed var(--rule);
+      font-size: 1rem;
+    }
+    ul.entries li .when {
+      font-family: 'Caveat', cursive;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-right: 0.6rem;
+    }
+
+    .underlined { background: linear-gradient(transparent 75%, #ffe6a0 75%, #ffe6a0 95%, transparent 95%); }
+
+    @media (max-width: 720px) {
+      .twocol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <span>Nishad's Notebook</span>
+      <nav class="nav">
+        <a href="#">about</a>
+        <a href="#">papers</a>
+        <a href="#">news</a>
+        <a href="#">cv</a>
+      </nav>
+      <span class="date">May '26</span>
+    </div>
+
+    <h1>Hi, I'm Nishad.</h1>
+    <span class="hand">— and yes, the dosa is non-negotiable.</span>
+
+    <div class="twocol">
+      <div class="prose">
+        <p>I'm an <a href="#">ELLIS</a> PhD student working with <a href="#">Anna Rohrbach</a> and <a href="#">Marcus Rohrbach</a>. I'm also collaborating on <a href="#">OpenThoughts-Agent</a> under <a href="#">Ludwig Schmidt</a>.</p>
+
+        <div class="margin-note">currently in Cupertino → say hi if you're around!</div>
+
+        <p>Right now I'm interning at <span class="underlined">Apple MLR</span> with <a href="#">Alex Toshev</a> and <a href="#">Andrew Szot</a>. My research lives at the intersection of <em>embodied AI, agents, reasoning,</em> and <em>multimodality</em>.</p>
+
+        <p>Before this I spent time at <a href="#">MPI-IS</a> and <a href="#">UCLA</a>, with mentors I couldn't have asked for. Earlier still: undergrad at IIT Delhi.</p>
+
+        <div class="sticky">P.S. always up for badminton ✦</div>
+
+        <h2>recent</h2>
+        <ul class="entries">
+          <li><span class="when">Apr 26</span> started at Apple, Cupertino</li>
+          <li><span class="when">Feb 26</span> VeGAS → CVPR 2026 (Findings)</li>
+          <li><span class="when">Jul 25</span> When To Solve → CoLM 2025</li>
+          <li><span class="when">May 25</span> Centaur → <em>Nature</em></li>
+        </ul>
+      </div>
+
+      <aside>
+        <div class="polaroid">
+          <img src="prof_pic.jpg" alt="Nishad">
+          <div class="cap">that's me</div>
+        </div>
+        <div style="font-family:'Caveat',cursive; font-size:1.15rem; color:var(--mute); text-align:center; transform:rotate(-1deg);">
+          singing · guitar · badminton<br>photography · dosa
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nishad Singhi — 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --ink: #111;
+      --mute: #6b6b6b;
+      --rule: #1110;
+      --accent: #ff5722;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem clamp(1.25rem, 4vw, 3rem); }
+
+    nav.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1112;
+      margin-bottom: 6rem;
+    }
+    nav.top .links a {
+      color: var(--ink);
+      text-decoration: none;
+      margin-left: 1.8rem;
+    }
+    nav.top .links a:hover { color: var(--accent); }
+    nav.top .mark { font-weight: 500; color: var(--ink); letter-spacing: 0.1em; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 6rem;
+    }
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    h1 {
+      grid-column: 1 / 9;
+      font-size: clamp(3.5rem, 14vw, 13rem);
+      line-height: 0.85;
+      letter-spacing: -0.045em;
+      font-weight: 300;
+      margin: 0;
+    }
+    h1 .l2 { display: block; padding-left: 0.4em; }
+    .meta {
+      grid-column: 9 / 13;
+      text-align: right;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--mute);
+      line-height: 1.7;
+    }
+    .meta strong { color: var(--ink); font-weight: 500; }
+
+    .body {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+    }
+    .body .lede {
+      grid-column: 1 / 8;
+      font-size: clamp(1.4rem, 1rem + 1.5vw, 2.1rem);
+      line-height: 1.25;
+      letter-spacing: -0.018em;
+      font-weight: 300;
+    }
+    .body .lede em { color: var(--accent); font-style: normal; font-weight: 400; }
+    .body .side {
+      grid-column: 9 / 13;
+      font-size: 0.92rem;
+      color: var(--mute);
+      line-height: 1.65;
+    }
+    .body .side a { color: var(--ink); text-decoration: underline; text-decoration-color: #ccc; text-underline-offset: 3px; }
+    .body .side a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+    .indexrow {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+      margin: 7rem 0 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #1112;
+    }
+    .indexrow .num {
+      grid-column: span 1;
+      font-size: 0.78rem;
+      color: var(--mute);
+      letter-spacing: 0.12em;
+    }
+    .indexrow .title {
+      grid-column: span 8;
+      font-size: 1.05rem;
+      letter-spacing: -0.005em;
+    }
+    .indexrow .where {
+      grid-column: span 3;
+      font-size: 0.85rem;
+      color: var(--mute);
+      text-align: right;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .indexrow:hover .title { color: var(--accent); }
+
+    .foot {
+      margin-top: 6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1112;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--mute);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 720px) {
+      h1 { grid-column: 1 / 13; font-size: clamp(3rem, 16vw, 6rem); }
+      .meta { grid-column: 1 / 13; text-align: left; margin-top: 2rem; }
+      .body .lede, .body .side { grid-column: 1 / 13; }
+      .indexrow .title { grid-column: span 7; }
+      .indexrow .where { grid-column: span 4; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav class="top">
+      <span class="mark">N. SINGHI</span>
+      <div class="links">
+        <a href="#">About</a>
+        <a href="#">Publications</a>
+        <a href="#">News</a>
+        <a href="#">CV</a>
+      </div>
+    </nav>
+
+    <section class="grid">
+      <h1>
+        Nishad
+        <span class="l2">Singhi.</span>
+      </h1>
+      <div class="meta">
+        <div class="label">2026 — ongoing</div>
+        <strong>PhD · Tübingen / Apple MLR</strong><br>
+        Embodied AI · Agents<br>
+        Reasoning · Multimodality
+      </div>
+    </section>
+
+    <section class="body">
+      <p class="lede">
+        Teaching machines to <em>think</em>, then to <em>act</em>. ELLIS PhD with Anna Rohrbach and Marcus Rohrbach; currently interning at Apple MLR with Alex Toshev and Andrew Szot.
+      </p>
+      <div class="side">
+        <p>Previously at MPI-IS and UCLA. Worked with <a href="#">Kai-Wei Chang</a>, <a href="#">Aditya Grover</a>, <a href="#">Wieland Brendel</a>, <a href="#">Zeynep Akata</a>, <a href="#">Falk Lieder</a>. Undergrad at IIT Delhi.</p>
+        <p>Best Paper, RTML @ ICLR 2023. D&amp;I Award, CogSci 2023.</p>
+        <p><a href="mailto:nishadsinghi@gmail.com">Say hi →</a></p>
+      </div>
+    </section>
+
+    <div class="indexrow">
+      <div class="num">01</div>
+      <div class="title">Think Twice, Act Once</div>
+      <div class="where">CVPR 2026 — Findings</div>
+    </div>
+    <div class="indexrow" style="margin-top:0; padding-top:1rem; border-top:1px solid #1111">
+      <div class="num">02</div>
+      <div class="title">When To Solve, When To Verify</div>
+      <div class="where">CoLM 2025</div>
+    </div>
+    <div class="indexrow" style="margin-top:0; padding-top:1rem; border-top:1px solid #1111">
+      <div class="num">03</div>
+      <div class="title">A foundation model of human cognition</div>
+      <div class="where">Nature 2025</div>
+    </div>
+    <div class="indexrow" style="margin-top:0; padding-top:1rem; border-top:1px solid #1111">
+      <div class="num">04</div>
+      <div class="title">CleanCLIP</div>
+      <div class="where">ICCV 2023 — Oral</div>
+    </div>
+
+    <div class="foot">
+      <span>Index 01 / 04</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</body>
+</html>

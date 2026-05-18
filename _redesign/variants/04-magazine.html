@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Issue 26 — Nishad Singhi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1814;
+      --paper: #f1e9d9;
+      --ink: #1a1814;
+      --accent: #c8412e;
+      --gold: #c9a86b;
+      --mute: #79716a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--paper);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .cover {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #f1e9d930;
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .masthead .vol { letter-spacing: 0.18em; color: var(--paper); }
+    .masthead a { color: var(--paper); text-decoration: none; margin-left: 1.4rem; }
+    .masthead a:hover { color: var(--accent); }
+
+    .stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .portrait-wrap {
+      position: relative;
+    }
+    .portrait-wrap img {
+      width: 100%;
+      max-width: 460px;
+      filter: contrast(1.05) saturate(0.85);
+      box-shadow: 18px 18px 0 var(--accent);
+      transition: box-shadow 360ms ease;
+    }
+    .portrait-wrap:hover img { box-shadow: 24px 24px 0 var(--gold); }
+
+    .feature .kicker {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    .feature h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw + 1rem, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      margin: 0 0 1.5rem;
+      color: var(--paper);
+    }
+    .feature h1 em {
+      font-style: italic;
+      color: var(--accent);
+      display: block;
+    }
+    .feature .deck {
+      font-size: 1.05rem;
+      line-height: 1.55;
+      color: var(--paper);
+      max-width: 28rem;
+      opacity: 0.88;
+    }
+    .feature .deck strong { color: var(--gold); font-weight: 500; }
+
+    .pillstrip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0;
+    }
+    .pillstrip span {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid #f1e9d950;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      color: var(--paper);
+    }
+
+    .toc {
+      border-top: 1px solid #f1e9d930;
+      padding-top: 1.4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    .toc-item .pg {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .toc-item .ttl {
+      font-size: 0.92rem;
+      line-height: 1.35;
+      color: var(--paper);
+    }
+    .toc-item .ven {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 800px) {
+      .stage { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 0; }
+      .portrait-wrap img { max-width: 100%; }
+      .toc { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+
+    <div class="masthead">
+      <span class="vol">Vol. XXVI · No. 5</span>
+      <span>Tübingen ⟶ Cupertino · May 2026</span>
+      <span>
+        <a href="#">About</a>
+        <a href="#">Publications</a>
+        <a href="#">News</a>
+        <a href="#">CV</a>
+      </span>
+    </div>
+
+    <div class="stage">
+      <div class="portrait-wrap">
+        <img src="prof_pic.jpg" alt="Nishad Singhi">
+      </div>
+      <div class="feature">
+        <div class="kicker">— a conversation with —</div>
+        <h1>Nishad<br>Singhi<em>on thinking machines.</em></h1>
+        <p class="deck">
+          ELLIS PhD with <strong>Anna &amp; Marcus Rohrbach</strong>, currently at <strong>Apple MLR</strong>.
+          On verifiers vs. vibes, embodied agents that fail gracefully, and why the dosa is non-negotiable.
+        </p>
+        <div class="pillstrip">
+          <span>Embodied AI</span>
+          <span>Agents</span>
+          <span>Reasoning</span>
+          <span>Multimodality</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-item">
+        <div class="pg">p. 04</div>
+        <div class="ttl">Think Twice, Act Once</div>
+        <div class="ven">CVPR · 2026</div>
+      </div>
+      <div class="toc-item">
+        <div class="pg">p. 12</div>
+        <div class="ttl">When To Solve, When To Verify</div>
+        <div class="ven">CoLM · 2025</div>
+      </div>
+      <div class="toc-item">
+        <div class="pg">p. 18</div>
+        <div class="ttl">A Foundation Model of Human Cognition</div>
+        <div class="ven">Nature · 2025</div>
+      </div>
+      <div class="toc-item">
+        <div class="pg">p. 26</div>
+        <div class="ttl">CleanCLIP</div>
+        <div class="ven">ICCV · 2023 — Oral</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

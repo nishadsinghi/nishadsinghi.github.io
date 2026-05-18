@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aesthetic variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Inter:wght@400..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe4;
+      --ink: #1c1a17;
+      --mute: #6b6457;
+      --rule: #2a241d20;
+      --accent: #8a2a23;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.55;
+      padding: 3rem clamp(1.25rem, 4vw, 3rem);
+    }
+    .wrap { max-width: 60rem; margin: 0 auto; }
+    h1 {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.6rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .sub { font-style: italic; color: var(--mute); margin-bottom: 3rem; font-size: 1.1rem; }
+    a.back {
+      color: var(--mute);
+      text-decoration: none;
+      font-style: italic;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+    }
+    a.back:hover { color: var(--accent); }
+    .list {
+      display: grid;
+      gap: 1.4rem;
+      margin: 2rem 0;
+    }
+    .card {
+      display: grid;
+      grid-template-columns: 4rem 1fr auto;
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid var(--rule);
+      background: #ffffff60;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 200ms ease, transform 200ms ease, background 200ms ease;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      background: #ffffffaa;
+    }
+    .num {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--accent);
+      font-variant-numeric: oldstyle-nums;
+    }
+    .name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.6rem;
+      letter-spacing: -0.005em;
+      margin: 0 0 0.2rem;
+    }
+    .desc { color: var(--mute); font-size: 1rem; line-height: 1.5; max-width: 36rem; }
+    .open {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      color: var(--mute);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .card:hover .open { color: var(--accent); }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+    .note { color: var(--mute); font-size: 0.95rem; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">← back to current redesign</a>
+
+    <h1 style="margin-top:1.5rem;">Aesthetic variants.</h1>
+    <p class="sub">Five distinctly different intro-page treatments. Click to open each.</p>
+
+    <div class="list">
+      <a class="card" href="01-brutalist.html">
+        <div class="num">i.</div>
+        <div>
+          <div class="name">Brutalist Academic</div>
+          <div class="desc">Times New Roman, white background, blue links, monospace nav. No animation. The "raw HTML" tradition — Karpathy / Yann LeCun. Confident in being plain.</div>
+        </div>
+        <div class="open">open →</div>
+      </a>
+
+      <a class="card" href="02-mono.html">
+        <div class="num">ii.</div>
+        <div>
+          <div class="name">Mono / Terminal</div>
+          <div class="desc">JetBrains Mono on charcoal with a lime accent. Sections framed like shell commands, blinking cursor on the name. Indie-tech, confident, very current.</div>
+        </div>
+        <div class="open">open →</div>
+      </a>
+
+      <a class="card" href="03-swiss.html">
+        <div class="num">iii.</div>
+        <div>
+          <div class="name">Swiss / Big-Type Modernist</div>
+          <div class="desc">Inter on near-white, 12-column asymmetric grid, your name set huge. A single coral accent. Reads like a design studio's portfolio.</div>
+        </div>
+        <div class="open">open →</div>
+      </a>
+
+      <a class="card" href="04-magazine.html">
+        <div class="num">iv.</div>
+        <div>
+          <div class="name">Magazine Cover</div>
+          <div class="desc">DM Serif Display headline, your portrait as the cover image, masthead with volume / issue. Dramatic, image-led, treats you as the subject of an interview.</div>
+        </div>
+        <div class="open">open →</div>
+      </a>
+
+      <a class="card" href="05-notebook.html">
+        <div class="num">v.</div>
+        <div>
+          <div class="name">Notebook / Marginalia</div>
+          <div class="desc">Spectral serif + Caveat handwriting, warm paper background. Polaroid portrait, margin notes, sticky note, highlighter strokes. Personal and inviting.</div>
+        </div>
+        <div class="open">open →</div>
+      </a>
+    </div>
+
+    <hr>
+    <p class="note">These are mock intros, not wired up — just the front page treatment of each so you can pick a direction.</p>
+  </div>
+</body>
+</html>
