@@ -495,7 +495,7 @@ section.block { padding: 1.8rem 0; }
   background: var(--accent);
   border-radius: 4px 0 0 4px;
 }
-:root[data-theme="dark"] .pub.featured { background: #221d15; }
+:root[data-theme="dark"] .pub.featured { background: #1a1f3a; }
 .pub-venue {
   font-family: var(--hand);
   font-size: 1.4rem;
