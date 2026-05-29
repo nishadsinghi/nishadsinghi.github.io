@@ -62,4 +62,37 @@
       path.style.animation = '';
     });
   }
+
+  var filterBar = document.getElementById('pubFilters');
+  if (filterBar) {
+    var btns = filterBar.querySelectorAll('.filter-btn');
+    var pubs = document.querySelectorAll('.pub');
+    var groups = document.querySelectorAll('.year-group');
+
+    function applyFilter(tag) {
+      pubs.forEach(function (p) {
+        var tags = (p.getAttribute('data-tags') || '').split(/\s+/);
+        var show = tag === 'all' || tags.indexOf(tag) !== -1;
+        p.style.display = show ? '' : 'none';
+      });
+      groups.forEach(function (g) {
+        var visible = g.querySelectorAll('.pub:not([style*="display: none"])').length;
+        g.classList.toggle('is-empty', visible === 0);
+      });
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) {
+          x.classList.remove('active');
+          x.setAttribute('aria-selected', 'false');
+        });
+        b.classList.add('active');
+        b.setAttribute('aria-selected', 'true');
+        applyFilter(b.getAttribute('data-filter'));
+      });
+    });
+
+    applyFilter('selected');
+  }
 })();
