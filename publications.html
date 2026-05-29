@@ -39,7 +39,6 @@
 
     <section class="page-head">
       <h1>Papers.</h1>
-      <p class="sub">* equal contribution</p>
     </section>
 
     <div class="elsewhere">
@@ -47,11 +46,24 @@
       <a href="https://scholar.google.com/citations?user=L1b6JqsAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
     </div>
 
+    <div class="filters" id="pubFilters" role="tablist" aria-label="Filter publications">
+      <span class="flbl">filter —</span>
+      <button class="filter-btn active" data-filter="selected" role="tab" aria-selected="true">Selected</button>
+      <button class="filter-btn" data-filter="all" role="tab" aria-selected="false">All</button>
+      <button class="filter-btn" data-filter="agents" role="tab" aria-selected="false">Agents</button>
+      <button class="filter-btn" data-filter="reasoning" role="tab" aria-selected="false">Reasoning</button>
+      <button class="filter-btn" data-filter="multimodal" role="tab" aria-selected="false">Multimodal AI</button>
+      <button class="filter-btn" data-filter="trustworthy" role="tab" aria-selected="false">Trustworthy AI</button>
+      <button class="filter-btn" data-filter="cogsci" role="tab" aria-selected="false">CogSci</button>
+    </div>
+
+    <p class="equal-note">* equal contribution</p>
+
     <div class="pubs">
 
       <section class="year-group">
         <h3>2026</h3>
-        <article class="pub featured" id="vegas">
+        <article class="pub featured" id="vegas" data-tags="selected agents reasoning multimodal">
 
           <div class="pub-venue">CVPR</div>
           <div>
@@ -68,7 +80,7 @@
 
       <section class="year-group">
         <h3>2025</h3>
-        <article class="pub featured" id="wtswtv">
+        <article class="pub featured" id="wtswtv" data-tags="selected reasoning">
           <div class="pub-venue">CoLM</div>
           <div>
             <h4 class="pub-title">When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning</h4>
@@ -81,7 +93,7 @@
           </div>
         </article>
 
-        <article class="pub" id="centaur">
+        <article class="pub" id="centaur" data-tags="cogsci">
           <div class="pub-venue">Nature</div>
           <div>
             <h4 class="pub-title">A foundation model to predict and capture human cognition</h4>
@@ -97,7 +109,7 @@
 
       <section class="year-group">
         <h3>2024</h3>
-        <article class="pub" id="cbm">
+        <article class="pub" id="cbm" data-tags="selected trustworthy multimodal">
           <div class="pub-venue">ECCV</div>
           <div>
             <h4 class="pub-title">Improving Intervention Efficacy via Concept Realignment in Concept Bottleneck Models</h4>
@@ -113,7 +125,7 @@
 
       <section class="year-group">
         <h3>2023</h3>
-        <article class="pub featured" id="cleanclip">
+        <article class="pub featured" id="cleanclip" data-tags="selected trustworthy multimodal">
           <div class="pub-venue">ICCV</div>
           <div>
             <h4 class="pub-title">CleanCLIP: Mitigating Data Poisoning Attacks in Multimodal Contrastive Learning</h4>
@@ -127,7 +139,7 @@
           </div>
         </article>
 
-        <article class="pub" id="subgoals">
+        <article class="pub" id="subgoals" data-tags="cogsci">
           <div class="pub-venue">CogSci</div>
           <div>
             <h4 class="pub-title">Toward a normative theory of (self-) management by goal-setting</h4>
@@ -141,7 +153,7 @@
           </div>
         </article>
 
-        <article class="pub" id="loss-aversion">
+        <article class="pub" id="loss-aversion" data-tags="cogsci">
           <div class="pub-venue">CogSci</div>
           <div>
             <h4 class="pub-title">Using Computational Models to Understand the Role and Nature of Valuation Bias in Mixed Gambles</h4>
@@ -154,7 +166,7 @@
           </div>
         </article>
 
-        <article class="pub" id="fmri">
+        <article class="pub" id="fmri" data-tags="cogsci">
           <div class="pub-venue">PuG</div>
           <div>
             <h4 class="pub-title">Motivated With Joy or Anxiety: Does Approach-Avoidance Goal Framing Elicit Differential Reward-Network Activation In The Brain?</h4>
