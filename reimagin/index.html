@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ReImaGin: a multimodal LLM that reasons by generating images. COLM 2026.">
+<meta name="author" content="Nishad Singhi, Hector Garcia Rodriguez, Aditya Arora, Marcus Rohrbach, Anna Rohrbach">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ReImaGin — Reasoning with Image Generation">
+<meta property="og:description" content="ReImaGin: a multimodal LLM that reasons by generating images. COLM 2026.">
+<meta property="og:url" content="https://nishadsinghi.github.io/reimagin/">
+<meta property="og:image" content="https://nishadsinghi.github.io/assets/img/reimagin/teaser.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%96%BC%3C/text%3E%3C/svg%3E">
+<title>ReImaGin — Reasoning with Image Generation</title>
+<style>
+:root{
+  --bg:#f4f5f7; --band2:#eaedf1; --panel:#ffffff; --card:#ffffff; --ink:#1a1e24; --muted:#5b6673;
+  --line:#e2e5ea; --hair:#e7eaee; --accent:#34526e; --gold:#9a7b45; --green:#3f7a5f; --red:#a9473f;
+  --sand:#b8bcc4; --steel:#8a97a8; --code:#1b2027;
+  --display:"Avenir Next","Helvetica Neue","Segoe UI",Arial,sans-serif;
+  --serif:"Cochin","Hoefler Text",Palatino,Georgia,serif;
+  --emph:"Hoefler Text","Palatino Linotype",Palatino,Georgia,serif;
+  --mono:"Menlo",ui-monospace,"SF Mono",Consolas,monospace;
+  --nav:212px; --inner:820px;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14171c; --band2:#191d23; --panel:#1c2027; --card:#f5f7f9; --ink:#e7eaee; --muted:#99a3af;
+    --line:#2b313a; --hair:#23272f; --accent:#82a9cc; --gold:#c6a15e; --green:#74b394; --red:#d97a70;
+    --sand:#6e7783; --steel:#5b7089; --code:#0f1319; }
+}
+:root[data-theme="light"]{ --bg:#f4f5f7; --band2:#eaedf1; --panel:#ffffff; --card:#ffffff; --ink:#1a1e24;
+  --muted:#5b6673; --line:#e2e5ea; --hair:#e7eaee; --accent:#34526e; --gold:#9a7b45; --green:#3f7a5f;
+  --red:#a9473f; --sand:#b8bcc4; --steel:#8a97a8; --code:#1b2027; }
+:root[data-theme="dark"]{ --bg:#14171c; --band2:#191d23; --panel:#1c2027; --card:#f5f7f9; --ink:#e7eaee;
+  --muted:#99a3af; --line:#2b313a; --hair:#23272f; --accent:#82a9cc; --gold:#c6a15e; --green:#74b394;
+  --red:#d97a70; --sand:#6e7783; --steel:#5b7089; --code:#0f1319; }
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none!important;} }
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--serif); font-size:19px;
+  line-height:1.66; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+a{color:var(--accent);}
+h2{font-family:var(--display); font-weight:600; font-size:clamp(23px,2.7vw,31px); letter-spacing:-.015em; margin:0 0 20px; text-wrap:balance;}
+p{margin:0 0 18px;} .lead{font-size:20px; line-height:1.62;}
+code{font-family:var(--mono); font-size:.82em; background:color-mix(in srgb,var(--accent) 12%,transparent);
+  color:var(--accent); padding:.08em .34em; border-radius:4px;}
+em{font-family:var(--emph); font-style:italic;}
+
+/* theme toggle */
+.themebtn{position:fixed; top:15px; right:15px; z-index:40; width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--line); background:var(--panel); color:var(--ink); font-size:17px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;}
+.themebtn:hover{border-color:var(--accent); color:var(--accent);}
+.themebtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+/* side nav */
+.sidenav{position:fixed; left:0; top:0; width:var(--nav); height:100vh; padding:30px 22px; z-index:30;
+  border-right:1px solid var(--hair); background:var(--bg); overflow-y:auto;}
+.nav-brand{display:block; font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-.01em;
+  color:var(--ink); text-decoration:none; margin-bottom:26px;}
+.nav-brand .a{color:var(--accent);}
+.sidenav ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+.sidenav a{display:flex; gap:10px; align-items:baseline; text-decoration:none; color:var(--muted);
+  font-family:var(--mono); font-size:12.5px; letter-spacing:.02em; padding:7px 10px; border-radius:7px;
+  border-left:2px solid transparent;}
+.sidenav a .n{color:color-mix(in srgb,var(--muted) 60%,transparent); font-size:11px;}
+.sidenav a:hover{color:var(--ink); background:color-mix(in srgb,var(--accent) 6%,transparent);}
+.sidenav a.on{color:var(--accent); border-left-color:var(--accent);}
+.sidenav a.on .n{color:var(--accent);}
+
+/* layout */
+main{min-height:100vh;}
+.band{padding:64px 0; border-top:1px solid var(--hair);}
+.band.alt{background:var(--band2);}
+.band.hero{border-top:0; padding:70px 0 46px;}
+.inner{max-width:var(--inner); margin:0 auto; padding:0 34px;}
+@media (min-width:1080px){ main{margin-left:var(--nav);} }
+@media (max-width:1079px){ .sidenav{display:none;} }
+
+/* section header */
+.kicker{font-family:var(--mono); text-transform:uppercase; letter-spacing:.2em; font-size:11.5px;
+  color:var(--accent); margin:0 0 12px; display:flex; align-items:center; gap:10px;}
+.kicker::before{content:""; width:22px; height:1px; background:var(--accent); opacity:.6; display:inline-block;}
+
+/* hero */
+.hero .inner{text-align:center; max-width:900px;}
+.logos{display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; margin:0 0 30px;}
+.chip-logo{background:#fff; border:1px solid rgba(0,0,0,.07); border-radius:10px; padding:8px 14px;
+  display:inline-flex; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,.14);}
+.chip-logo img{display:block; width:auto;}
+.chip-logo img.lg-tuda{height:40px;} .chip-logo img.lg-hai{height:30px;} .chip-logo img.lg-colm{height:30px;}
+.lg-year{font-family:var(--mono); font-size:14px; letter-spacing:.06em; color:var(--muted);}
+h1.title{font-family:var(--display); font-weight:600; font-size:clamp(30px,4.6vw,50px); line-height:1.1;
+  letter-spacing:-.02em; margin:0 auto; max-width:17ch; text-wrap:balance;}
+h1.title .hl{color:var(--accent);}
+.authors{font-size:clamp(16px,2vw,19px); margin:22px auto 4px; max-width:52ch; color:var(--ink);}
+.authors sup{color:var(--accent);}
+.authors a{color:inherit; text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  text-underline-offset:3px; text-decoration-thickness:1px;}
+.authors a:hover{color:var(--accent); text-decoration-color:var(--accent);}
+.authors a:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.eqc{color:var(--muted); font-size:13px; font-family:var(--mono); letter-spacing:.03em;}
+.affil{font-family:var(--display); color:var(--muted); font-size:15px; margin:10px 0 0;}
+.venue{display:inline-block; font-family:var(--display); font-weight:600; font-size:14.5px;
+  letter-spacing:.01em; color:var(--accent); background:color-mix(in srgb,var(--accent) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 34%,transparent); padding:8px 18px; border-radius:999px;
+  margin:16px 0 0;}
+.links{display:flex; flex-wrap:wrap; gap:11px; justify-content:center; margin:28px 0 0;}
+.btn{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13.5px;
+  letter-spacing:.02em; text-decoration:none; color:var(--ink); background:var(--panel);
+  border:1px solid var(--line); padding:10px 19px; border-radius:999px; transition:.16s; cursor:pointer;}
+.btn:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-1px);}
+.btn.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.btn.primary:hover{color:#fff; filter:brightness(1.07);}
+.btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+/* figures */
+figure{margin:26px 0;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.07); overflow-x:auto;}
+.card img{display:block; width:100%; height:auto; border-radius:5px;}
+figcaption{color:var(--muted); font-size:14.5px; line-height:1.5; margin-top:11px;}
+figcaption b{color:var(--ink); font-weight:700;}
+.split{display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center;}
+@media(max-width:720px){ .split{grid-template-columns:1fr;} }
+.split figure{margin:0;}
+
+/* loop chips */
+.loop{display:flex; flex-wrap:wrap; align-items:center; gap:11px; margin:22px 0 4px;}
+.chip{font-family:var(--mono); font-size:14px; padding:10px 16px; border-radius:9px; border:1.5px solid var(--ink);}
+.chip.gen{background:var(--accent); color:#fff; border-color:var(--accent);}
+.chip.ans{color:var(--green); border-color:var(--green);}
+.arrow{color:var(--muted); font-size:18px;}
+.subtle{color:var(--muted); font-family:var(--mono); font-size:12px; letter-spacing:.06em; margin-top:8px;}
+
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px;}
+.qbar{font-family:var(--emph); font-size:20px; font-style:italic; border-left:3px solid var(--accent); padding:4px 0 4px 18px; margin:0 0 20px;}
+.qbar b{font-style:normal; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); display:block; margin-bottom:5px;}
+
+/* step-through */
+.step{display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:start;}
+@media(max-width:720px){ .step{grid-template-columns:1fr;} }
+.step .tag{font-family:var(--mono); text-transform:uppercase; letter-spacing:.16em; font-size:11.5px;
+  color:var(--accent); margin:2px 0 10px;}
+.step .stext{font-family:var(--emph); font-style:italic; font-size:20px; margin:0 0 15px; min-height:2.1em;}
+.step .scode{background:var(--code); color:#f2ece2; font-family:var(--mono); font-size:12.5px; line-height:1.55;
+  padding:13px 15px; border-radius:9px; overflow-x:auto; white-space:pre-wrap; word-break:break-word;}
+.step .sans{font-family:var(--display); font-weight:600; font-size:29px; color:var(--green);}
+.stepimgs{display:flex; gap:11px;}
+.stepimgs figure{margin:0; flex:1; min-width:0;}
+.stepimgs .cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); text-align:center; margin-top:7px;}
+.stepimgs img{width:100%; border-radius:8px; border:1px solid var(--line); display:block;}
+.stepnav{display:flex; align-items:center; gap:12px; margin-top:18px; flex-wrap:wrap;}
+.dots{display:flex; gap:7px; margin-left:auto;}
+.dot{width:9px; height:9px; border-radius:50%; border:none; background:var(--line); cursor:pointer; padding:0;}
+.dot.on{background:var(--accent);}
+.navbtn{font-family:var(--mono); font-size:12.5px; background:var(--card); color:var(--ink);
+  border:1px solid var(--line); border-radius:8px; padding:8px 15px; cursor:pointer;}
+.navbtn:hover:not(:disabled){border-color:var(--accent); color:var(--accent);}
+.navbtn:disabled{opacity:.4; cursor:default;}
+.navbtn:focus-visible,.dot:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+/* tabs */
+.tabs{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px;}
+.tab{font-family:var(--mono); font-size:13px; letter-spacing:.02em; background:transparent; color:var(--muted);
+  border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer;}
+.tab:hover{color:var(--accent); border-color:var(--accent);}
+.tab.on{background:var(--accent); color:#fff; border-color:var(--accent);}
+.tab:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+/* task explorer */
+.explore{display:grid; grid-template-columns:1fr 1.08fr; gap:26px; align-items:start;}
+@media(max-width:720px){ .explore{grid-template-columns:1fr;} }
+.tq{font-size:20px; margin:2px 0 15px;}
+.tprompt{background:var(--code); color:#f2ece2; font-family:var(--mono); font-size:12.5px; line-height:1.55;
+  padding:13px 15px; border-radius:9px; white-space:pre-wrap; word-break:break-word; margin-bottom:15px;}
+.tnote{color:var(--muted); font-size:14.5px; margin:0 0 15px;}
+.ans-row{display:flex; align-items:center; gap:12px; padding:9px 0; font-size:18px; border-top:1px solid var(--line);}
+.ans-row .who{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); width:88px;}
+.ans-row.wrong .val{color:var(--red);} .ans-row.right .val{color:var(--green); font-weight:700;}
+
+/* before/after slider */
+.ba{position:relative; width:100%; border-radius:12px; overflow:hidden; border:1px solid var(--line);
+  background:var(--card); user-select:none; touch-action:none;}
+.ba img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+.ba .after{z-index:1;} .ba .before{z-index:2;}
+.ba .divider{position:absolute; top:0; bottom:0; width:2px; background:#fff; z-index:3; transform:translateX(-1px);
+  box-shadow:0 0 0 1px rgba(0,0,0,.25);}
+.ba .knob{position:absolute; top:50%; z-index:4; width:34px; height:34px; margin:-17px 0 0 -17px; border-radius:50%;
+  background:#fff; border:2px solid var(--accent); display:flex; align-items:center; justify-content:center;
+  color:var(--accent); font-size:15px; box-shadow:0 1px 4px rgba(0,0,0,.3); pointer-events:none;}
+.ba input[type=range]{position:absolute; inset:0; z-index:5; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize;}
+.ba .btag{position:absolute; top:10px; z-index:4; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:#fff; background:rgba(0,0,0,.55); padding:4px 9px; border-radius:6px;}
+.ba .btag.l{left:10px;} .ba .btag.r{right:10px;}
+.hint{font-family:var(--mono); font-size:11.5px; color:var(--muted); text-align:center; margin-top:9px;}
+
+/* charts */
+.legend{display:flex; flex-wrap:wrap; gap:16px; margin:2px 0 16px; font-family:var(--mono); font-size:12.5px; color:var(--muted);}
+.legend .lg{display:inline-flex; align-items:center; gap:7px;}
+.legend .sw{width:13px; height:13px; border-radius:3px; display:inline-block;}
+.plot{display:flex; gap:10px; align-items:flex-end; height:290px; padding-top:22px;}
+.cg{flex:1; display:flex; flex-direction:column; align-items:center; min-width:0;}
+.bars{display:flex; gap:5px; align-items:flex-end; justify-content:center; height:252px; width:100%;}
+.barcol{display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; flex:1; max-width:50px;}
+.bar{width:100%; border-radius:4px 4px 0 0; height:0%; transition:height .8s cubic-bezier(.2,.75,.25,1);}
+.bar:focus-visible{outline:2px solid var(--ink); outline-offset:1px;}
+.blabel{font-family:var(--mono); font-weight:700; font-size:11.5px; margin-bottom:5px; color:var(--ink);}
+.clabel{margin-top:9px; font-size:14px; color:var(--muted); text-align:center;}
+
+.pull{font-family:var(--display); font-size:clamp(20px,2.6vw,27px); font-weight:600; line-height:1.32;
+  letter-spacing:-.01em; text-wrap:balance; margin:26px 0;}
+.pull .accent{color:var(--accent);}
+
+/* results table */
+.tablewrap{overflow-x:auto; margin:20px 0; border:1px solid var(--line); border-radius:12px;}
+table{border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:14px;}
+caption{caption-side:bottom; text-align:left; color:var(--muted); font-family:var(--serif); font-size:14px; padding:13px 15px 2px;}
+th,td{padding:9px 13px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap;}
+thead th{color:var(--muted); font-weight:700; border-bottom:2px solid var(--line);}
+th.model{text-align:left; vertical-align:top; color:var(--ink); font-family:var(--serif); font-weight:700;
+  font-size:16px; border-right:1px solid var(--line); padding-top:13px;}
+td.app{text-align:left; color:var(--muted);}
+tr.ours{background:color-mix(in srgb,var(--accent) 9%,transparent);}
+tr.ours td.app{color:var(--accent); font-weight:700;}
+td.best{color:var(--ink); font-weight:700;} tr.ours td.best{color:var(--accent);}
+
+pre{background:var(--code); color:#f2ece2; font-family:var(--mono); font-size:13px; line-height:1.6;
+  padding:20px 22px; border-radius:12px; overflow-x:auto; margin:0;}
+.bibhead{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 10px;}
+.copy{font-family:var(--mono); font-size:12.5px; background:var(--panel); color:var(--ink); border:1px solid var(--line);
+  border-radius:8px; padding:8px 14px; cursor:pointer;}
+.copy:hover{border-color:var(--accent); color:var(--accent);}
+.copy:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+footer{color:var(--muted); font-size:13px; font-family:var(--mono); letter-spacing:.03em; text-align:center;
+  padding:30px 0 60px;}
+</style>
+</head>
+<body>
+
+
+<button class="themebtn" id="themeBtn" type="button" aria-label="Toggle light or dark theme">☾</button>
+
+<nav class="sidenav">
+  <a class="nav-brand" href="#top">ReImaGin</a>
+  <ul>
+    <li><a href="#motivation"><span class="n">01</span> Motivation</a></li>
+    <li><a href="#idea"><span class="n">02</span> The idea</a></li>
+    <li><a href="#trace"><span class="n">03</span> Reasoning</a></li>
+    <li><a href="#tasks"><span class="n">04</span> Tasks</a></li>
+    <li><a href="#results"><span class="n">05</span> Results</a></li>
+    <li><a href="#tts"><span class="n">06</span> Test-time scaling</a></li>
+    <li><a href="#discovery"><span class="n">07</span> Discovery</a></li>
+    <li><a href="#cite">Cite</a></li>
+  </ul>
+</nav>
+
+<main>
+<section class="band hero" id="top">
+  <div class="inner">
+    <div class="logos">
+      <span class="chip-logo"><img class="lg-tuda" src="/assets/img/reimagin/tu-darmstadt.svg" alt="Technical University of Darmstadt"></span>
+      <span class="chip-logo"><img class="lg-hai" src="/assets/img/reimagin/hessian-ai.webp" alt="hessian.AI"></span>
+      <span class="chip-logo"><img class="lg-colm" src="/assets/img/reimagin/colm.svg" alt="COLM"></span>
+    </div>
+    <h1 class="title"><span class="hl">Re</span>asoning with <span class="hl">Ima</span>ge
+      <span class="hl">G</span>enerat<span class="hl">i</span>o<span class="hl">n</span></h1>
+    <p class="authors"><a href="https://nishadsinghi.github.io/">Nishad Singhi</a><sup>*&dagger;</sup>,
+      <a href="https://hector.gr/">Hector Garcia Rodriguez</a><sup>*&dagger;</sup>,
+      <a href="https://adityac8.github.io/">Aditya Arora</a><sup>&dagger;</sup>,
+      <a href="https://rohrbach.vision/">Marcus Rohrbach</a>,
+      <a href="https://anna-rohrbach.net/">Anna Rohrbach</a></p>
+    <p class="eqc">* equal contribution &nbsp;&middot;&nbsp; &dagger; core contributors</p>
+    <p class="affil">Technical University of Darmstadt &middot; hessian.AI</p>
+    <p class="venue">Conference on Language Modeling (COLM) 2026</p>
+    <nav class="links">
+      <a class="btn primary" href="https://openreview.net/forum?id=jWMw2roMnh" target="_blank" rel="noopener">Paper</a>
+      <a class="btn" href="#" title="Add your arXiv URL">arXiv</a>
+      <a class="btn" href="#" title="Add your code URL">Code</a>
+      <a class="btn" href="#" title="Add your video URL">Video</a>
+      <a class="btn" href="#cite">BibTeX</a>
+    </nav>
+    <figure style="margin-top:38px">
+      <div class="card"><img alt="ReImaGin teaser: two views of a room and a spatial question; the model generates a top-down map and answers." src="/assets/img/reimagin/teaser.jpg"></div>
+      <figcaption><b>ReImaGin reasons by generating images.</b> Given two disjoint views and a spatial
+      question, the model calls an image generator to synthesize a top-down map, then reads the answer
+      off the generated visualization.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" id="motivation">
+  <div class="inner">
+    <p class="kicker">01 &middot; Motivation</p>
+    <h2>Multimodal models still reason in words</h2>
+    <div class="split">
+      <div>
+        <p>Chain-of-thought taught language models to think in intermediate steps. Multimodal models
+        inherited the inputs, so they can look at images, but not the manipulation: their reasoning
+        stays textual, describing a picture in words rather than changing it.</p>
+        <p>Prior work adds specialist vision tools such as depth estimation, segmentation, and object
+        detection, so a model can act on pixels. But each tool performs one fixed operation, and many
+        transformations a task needs have <em>no tool at all</em>.</p>
+      </div>
+      <figure>
+        <div class="card"><img alt="A crate of oranges, partly hidden behind a black box." src="/assets/img/reimagin/occ_in.jpg"></div>
+        <figcaption><b>How many oranges are there, including the hidden ones?</b> Depth,
+        segmentation and detection can label what is visible. None can reveal what the black
+        box hides.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="idea">
+  <div class="inner">
+    <p class="kicker">02 &middot; The idea</p>
+    <h2>Make the tool a generator</h2>
+    <div class="split">
+      <div>
+        <p class="lead">Instruction-following image generators change what a visual tool can be. They
+        perform any operation that can be expressed in natural language, so the set of possible
+        operations is open-ended.</p>
+        <p>ReImaGin gives the model a single, general tool. At any step it can call
+        <code>generate_image</code> with a prompt and reason over the result, repeating until it can
+        answer.</p>
+        <div class="loop">
+          <span class="chip">Reason</span><span class="arrow">&rarr;</span>
+          <span class="chip gen">generate_image</span><span class="arrow">&rarr;</span>
+          <span class="chip">Observe</span><span class="arrow">&rarr;</span>
+          <span class="chip ans">Answer</span>
+        </div>
+      </div>
+      <figure>
+        <div class="card"><img alt="The same oranges with the black box removed and the hidden ones filled in." src="/assets/img/reimagin/occ_gen.jpg"></div>
+        <figcaption><b>One prompt, and the box is gone.</b> <code>generate_image</code> removes the
+        occluder and completes the pattern, so the oranges can simply be counted.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="trace">
+  <div class="inner">
+    <p class="kicker">03 &middot; Reasoning trace</p>
+    <h2>Step through a full trace</h2>
+    <p>A multi-view spatial question, solved one generated image at a time. Each becomes the input
+    the model reasons over next.</p>
+    <div class="qbar"><b>The question</b>When I am using the pink towel, where is the green laundry
+    detergent located relative to me?</div>
+    <div class="panel">
+      <div class="step">
+        <div>
+          <div class="tag" id="stTag">Input</div>
+          <p class="stext" id="stText"></p>
+          <div id="stCode" class="scode" hidden></div>
+          <div id="stAns" class="sans" hidden></div>
+        </div>
+        <div class="stepimgs" id="stImgs"></div>
+      </div>
+      <div class="stepnav">
+        <button class="navbtn" id="stPrev" type="button">&larr; Prev</button>
+        <button class="navbtn" id="stNext" type="button">Next &rarr;</button>
+        <button class="navbtn" id="stPlay" type="button">Autoplay</button>
+        <div class="dots" id="stDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="tasks">
+  <div class="inner">
+    <p class="kicker">04 &middot; Tasks</p>
+    <h2>Explore the tasks</h2>
+    <p>One mechanism across diverse tasks. Pick a task, then drag the slider to see what
+    <code>generate_image</code> produced from the input.</p>
+    <div class="tabs" id="taskTabs"></div>
+    <div class="panel">
+      <div class="explore">
+        <div>
+          <p class="tq" id="tq"></p>
+          <div class="tprompt" id="tprompt"></div>
+          <p class="tnote" id="tnote"></p>
+          <div class="ans-row wrong"><span class="who">Direct</span><span class="val" id="tdirect"></span></div>
+          <div class="ans-row right"><span class="who">ReImaGin</span><span class="val" id="treim"></span></div>
+        </div>
+        <div>
+          <div class="ba" id="ba">
+            <img class="after" id="baAfter" alt="Generated image">
+            <img class="before" id="baBefore" alt="Input image">
+            <div class="divider" id="baDiv"></div>
+            <div class="knob" id="baKnob">&#8596;</div>
+            <span class="btag l">Input</span><span class="btag r">Generated</span>
+            <input type="range" id="baRange" min="0" max="100" value="50" aria-label="Reveal the generated image">
+          </div>
+          <p class="hint">&#8596; drag to compare input and generated</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="results">
+  <div class="inner">
+    <p class="kicker">05 &middot; Results</p>
+    <h2>Consistent gains across tasks and models</h2>
+    <p>Across six visual reasoning tasks and three multimodal LLMs, ReImaGin consistently outperforms
+    both text-only reasoning and the specialist-tool baseline. Switch models to compare.</p>
+    <div class="tabs" id="modelTabs"></div>
+    <div class="panel"><div class="legend" id="resLegend"></div><div class="plot" id="resPlot"></div></div>
+    <p class="hint">Accuracy (%), higher is better. Occlusion counting uses sMAPE (lower is better) and
+    is shown in the full table below, not the chart.</p>
+    <p class="pull">Gains of up to <span class="accent">+25.0 points</span> over text-only reasoning,
+    from a single, general image-generation tool.</p>
+    <div class="tablewrap">
+      <table>
+        <caption>Table 1. Accuracy per task (%); <b>Occ. Count</b> reports sMAPE (lower is better,
+        &darr;). <b>Bold</b> = best per task; ReImaGin rows are tinted.</caption>
+        <thead><tr><th scope="col" class="model">Model</th><th scope="col">Approach</th><th scope='col'>Puzzle</th><th scope='col'>Occ. Count ↓</th><th scope='col'>Collision</th><th scope='col'>Spatial</th><th scope='col'>Tracing</th><th scope='col'>Depth</th></tr></thead>
+        <tbody>
+<tr><th rowspan="3" scope="rowgroup" class="model">Gemini-3.1-Pro</th><td class='app'>No tools</td><td>37.2</td><td>8.9</td><td>60.3</td><td>52.0</td><td>71.5</td><td>91.7</td></tr>
+<tr><td class='app'>Visual Sketchpad</td><td>38.5</td><td>9.7</td><td>65.0</td><td>57.0</td><td>74.7</td><td class="best">99.2</td></tr>
+<tr class="ours"><td class='app'>ReImaGin</td><td class="best">42.3</td><td class="best">7.1</td><td class="best">69.7</td><td class="best">59.0</td><td class="best">89.0</td><td>94.6</td></tr>
+<tr><th rowspan="3" scope="rowgroup" class="model">GPT-5</th><td class='app'>No tools</td><td>29.5</td><td>12.5</td><td>44.7</td><td>36.0</td><td>48.5</td><td>83.9</td></tr>
+<tr><td class='app'>Visual Sketchpad</td><td>16.7</td><td>11.7</td><td>51.0</td><td>37.7</td><td>41.7</td><td>88.7</td></tr>
+<tr class="ours"><td class='app'>ReImaGin</td><td class="best">44.9</td><td class="best">7.4</td><td class="best">54.0</td><td class="best">43.7</td><td class="best">73.5</td><td class="best">89.2</td></tr>
+<tr><th rowspan="3" scope="rowgroup" class="model">Qwen-3.5-27B</th><td class='app'>No tools</td><td>34.6</td><td>12.2</td><td>51.8</td><td>45.0</td><td>35.7</td><td>83.5</td></tr>
+<tr><td class='app'>Visual Sketchpad</td><td>25.6</td><td>8.7</td><td>48.0</td><td>46.7</td><td>32.5</td><td class="best">91.1</td></tr>
+<tr class="ours"><td class='app'>ReImaGin</td><td class="best">46.2</td><td class="best">6.8</td><td class="best">61.3</td><td class="best">54.3</td><td class="best">78.5</td><td>88.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="tts">
+  <div class="inner">
+    <p class="kicker">06 &middot; Test-time scaling</p>
+    <h2>Scale the image, not the text</h2>
+    <p class="lead">Generating images opens a new axis of test-time scaling. Rather than only thinking
+    for longer in words, ReImaGin can imagine the same scene several times and keep the best picture.</p>
+    <p>For one input and prompt, it samples <b>N = 10</b> candidate generations, then an MLLM selector
+    compares them and keeps the most faithful one to reason over.</p>
+    <figure style="max-width:600px; margin:26px auto;">
+      <div class="card"><img alt="Test-time scaling schematic: an image generator produces several candidate images for one prompt, and an MLLM selector keeps the best one." src="/assets/img/reimagin/ttssch.jpg"></div>
+      <figcaption><b>A new axis of scaling.</b> One prompt, many generated candidates; an MLLM
+      selector keeps the most faithful image, which the agent then reasons over.</figcaption>
+    </figure>
+    <p>The payoff is largest on multi-view spatial reasoning, where stitching two views and
+    synthesizing a top-down map is geometrically hard and single generations vary a lot. Selecting the
+    best of ten lifts spatial accuracy on every model.</p>
+    <div class="panel"><div class="legend" id="ttsLegend"></div><div class="plot" id="ttsPlot"></div></div>
+    <p class="hint">Spatial reasoning accuracy (MMSI, %). Test-time scaling is applied only to this
+    task, where generated layouts vary most across samples.</p>
+    <p class="pull">For hard geometric tasks, improving the quality of the
+    <span class="accent">imagined visual state</span> matters more than adding reasoning steps on a
+    weak one.</p>
+  </div>
+</section>
+
+<section class="band" id="discovery">
+  <div class="inner">
+    <p class="kicker">07 &middot; Strategy discovery</p>
+    <h2>Can the strategy be discovered automatically?</h2>
+    <p>Choosing which visualization to generate, and when, is itself a strategy. Until now it was
+    written by hand for each task. So we ask whether it can be found automatically: propose candidate
+    strategies, evaluate them on a small dev set, keep the best, and refine.</p>
+    <div class="loop">
+      <span class="chip">1 &middot; Propose</span><span class="arrow">&rarr;</span>
+      <span class="chip">2 &middot; Evaluate</span><span class="arrow">&rarr;</span>
+      <span class="chip gen">3 &middot; Keep the best</span><span class="arrow">&rarr;</span>
+      <span class="chip">4 &middot; Refine</span><span class="arrow">&#8635;</span>
+    </div>
+    <p class="subtle">REPEATED EACH ROUND</p>
+    <p style="margin-top:20px">The automatically discovered strategies recover most of the handcrafted
+    gains with no human-written examples, and often rediscover the handcrafted policy on their own.</p>
+    <div class="panel"><div class="legend" id="discLegend"></div><div class="plot" id="discPlot"></div></div>
+    <p class="hint">Gemini-3.1-Pro accuracy (%). Automatically discovered strategies close most of the
+    gap between no strategy and the handcrafted policy.</p>
+    <figure>
+      <div class="card"><img alt="Automatically discovered ReImaGin strategies across spatial, collision, depth and tracing." src="/assets/img/reimagin/disc.jpg"></div>
+      <figcaption><b>Discovered strategies in the wild.</b> Without any human examples, ReImaGin
+      rediscovers policies like <em>&ldquo;stitch the two views into a panorama&rdquo;</em> for spatial
+      reasoning and <em>&ldquo;draw an arrow along the object&rsquo;s trajectory&rdquo;</em> for collision.</figcaption>
+    </figure>
+    <p style="margin-top:8px"><b>They transfer across models.</b> Prompts discovered with
+    Gemini-3.1-Pro, applied unchanged to Qwen-3.5-27B, still beat text-only reasoning and the
+    specialist baseline on most tasks (e.g. tracing 35.7 &rarr; 55.9, collision 51.8 &rarr; 54.4).</p>
+  </div>
+</section>
+
+<section class="band alt" id="cite">
+  <div class="inner">
+    <p class="kicker">Cite</p>
+    <div class="bibhead"><h2 style="margin:0">BibTeX</h2>
+      <button class="copy" id="copyBtn" type="button">Copy</button></div>
+    <pre id="bib">@inproceedings{singhi2026reasoning,
+  title     = {Reasoning with Image Generation},
+  author    = {Singhi, Nishad and Garcia Rodriguez, Hector and Arora, Aditya
+               and Rohrbach, Marcus and Rohrbach, Anna},
+  booktitle = {Third Conference on Language Modeling},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=jWMw2roMnh}
+}</pre>
+    <p style="color:var(--muted); font-size:13.5px; margin-top:11px">Third Conference on Language
+    Modeling (COLM), 2026.</p>
+  </div>
+</section>
+
+<footer>Nishad Singhi &middot; Hector Garcia Rodriguez &middot; Aditya Arora &middot;
+Marcus Rohrbach &middot; Anna Rohrbach &nbsp;&bull;&nbsp; TU Darmstadt &amp; hessian.AI &middot; COLM 2026</footer>
+</main>
+
+<script>
+const IMG={teaser:"/assets/img/reimagin/teaser.jpg",sp_in1:"/assets/img/reimagin/sp_in1.jpg",sp_in2:"/assets/img/reimagin/sp_in2.jpg",sp_unified:"/assets/img/reimagin/sp_unified.jpg",sp_top:"/assets/img/reimagin/sp_top.jpg",col_in:"/assets/img/reimagin/col_in.jpg",col_gen:"/assets/img/reimagin/col_gen.jpg",occ_in:"/assets/img/reimagin/occ_in.jpg",occ_gen:"/assets/img/reimagin/occ_gen.jpg",puz_in:"/assets/img/reimagin/puz_in.jpg",puz_gen:"/assets/img/reimagin/puz_gen.jpg",puz_piece:"/assets/img/reimagin/puz_piece.jpg",tr_in:"/assets/img/reimagin/tr_in.jpg",tr_gen:"/assets/img/reimagin/tr_gen.jpg",disc:"/assets/img/reimagin/disc.jpg"};
+/* theme */
+(function(){
+  var root=document.documentElement, key="reimagin-theme", btn=document.getElementById("themeBtn");
+  var s=localStorage.getItem(key); if(s) root.dataset.theme=s;
+  function cur(){ return root.dataset.theme || (matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"); }
+  function draw(){ btn.textContent = cur()==="dark" ? "☀" : "☾"; }
+  draw();
+  btn.addEventListener("click", function(){ root.dataset.theme = cur()==="dark"?"light":"dark";
+    localStorage.setItem(key, root.dataset.theme); draw(); });
+})();
+
+/* scrollspy nav */
+(function(){
+  var links={}; document.querySelectorAll(".sidenav a[href^='#']").forEach(function(a){
+    links[a.getAttribute("href").slice(1)]=a; });
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ var id=e.target.id;
+      for(var k in links) links[k].classList.remove("on");
+      if(links[id]) links[id].classList.add("on"); } });
+  },{rootMargin:"-45% 0px -50% 0px", threshold:0});
+  document.querySelectorAll("main section[id]").forEach(function(sec){ obs.observe(sec); });
+})();
+
+/* step-through */
+var STEPS=[
+ {tag:"Input", text:"Two photos capture different parts of one bathroom. The pink towel is in one; the green detergent in the other.",
+  imgs:[{s:IMG.sp_in1,c:"Image 1"},{s:IMG.sp_in2,c:"Image 2"}]},
+ {tag:"Thought 1", text:"First, I will create a unified view of the scene.",
+  code:'unified = generate_image("combine the two images into a unified view", image_1, image_2)',
+  imgs:[{s:IMG.sp_in1,c:"Image 1"},{s:IMG.sp_in2,c:"Image 2"}]},
+ {tag:"Generated", text:"The two disjoint views are merged into a single, coherent scene.",
+  imgs:[{s:IMG.sp_unified,c:"Unified view"}]},
+ {tag:"Thought 2", text:"A top-down map will make the relative positions clear.",
+  code:'top_down = generate_image("create a top-down map of this scene", unified)',
+  imgs:[{s:IMG.sp_unified,c:"Unified view"}]},
+ {tag:"Generated", text:"A floorplan now places the towel and the detergent in one frame.",
+  imgs:[{s:IMG.sp_top,c:"Top-down map"}]},
+ {tag:"Answer", text:"If I am facing the towel, I am facing the right wall. From there, the detergent is to my back left.",
+  ans:"Back Left ✓", imgs:[{s:IMG.sp_top,c:"Top-down map"}]}
+];
+(function(){
+  var i=0, timer=null;
+  var tag=document.getElementById("stTag"), txt=document.getElementById("stText"),
+      code=document.getElementById("stCode"), ans=document.getElementById("stAns"),
+      imgs=document.getElementById("stImgs"), dots=document.getElementById("stDots"),
+      prev=document.getElementById("stPrev"), next=document.getElementById("stNext"),
+      play=document.getElementById("stPlay");
+  STEPS.forEach(function(_,k){ var d=document.createElement("button"); d.className="dot";
+    d.setAttribute("aria-label","Step "+(k+1)); d.addEventListener("click",function(){stop();go(k);});
+    dots.appendChild(d); });
+  function render(){
+    var s=STEPS[i];
+    tag.textContent=s.tag; txt.textContent=s.text;
+    if(s.code){ code.hidden=false; code.textContent=s.code; } else code.hidden=true;
+    if(s.ans){ ans.hidden=false; ans.textContent=s.ans; } else ans.hidden=true;
+    imgs.innerHTML="";
+    s.imgs.forEach(function(m){ var f=document.createElement("figure");
+      var im=document.createElement("img"); im.src=m.s; im.alt=m.c;
+      var c=document.createElement("div"); c.className="cap"; c.textContent=m.c;
+      f.appendChild(im); f.appendChild(c); imgs.appendChild(f); });
+    Array.prototype.forEach.call(dots.children,function(d,k){ d.classList.toggle("on",k===i); });
+    prev.disabled=(i===0); next.disabled=(i===STEPS.length-1);
+  }
+  function go(k){ i=Math.max(0,Math.min(STEPS.length-1,k)); render(); }
+  function stop(){ if(timer){clearInterval(timer); timer=null; play.textContent="Autoplay";} }
+  prev.addEventListener("click",function(){stop();go(i-1);});
+  next.addEventListener("click",function(){stop();go(i+1);});
+  play.addEventListener("click",function(){
+    if(timer){stop();return;}
+    play.textContent="Pause"; timer=setInterval(function(){ i=(i+1)%STEPS.length; render(); },2400);
+  });
+  render();
+})();
+
+/* task explorer (Spatial shown in the trace above) */
+var TASKS=[
+ {id:"Collision", q:"What will the small car hit if it moves forward?",
+  prompt:'generate_image("draw a straight arrow through the car, along the direction it faces", image_1)',
+  before:IMG.col_in, after:IMG.col_gen, ar:1.333, direct:"Red", reim:"Purple"},
+ {id:"Occlusion", q:"How many oranges are there, including the hidden ones?",
+  prompt:'generate_image("remove the black box and fill in the missing oranges", image_1)',
+  before:IMG.occ_in, after:IMG.occ_gen, ar:1.6, direct:"11", reim:"19"},
+ {id:"Puzzle", q:"Which of the five pieces fits perfectly into the missing part?",
+  prompt:'filled = generate_image("remove the white space to reveal the pattern", image_1)',
+  note:"Then subtracts the original from the filled image to isolate the missing piece.",
+  before:IMG.puz_in, after:IMG.puz_gen, ar:2.13, direct:"Picks the wrong piece", reim:"B"},
+ {id:"Tracing", q:"Which letter does each number connect to?",
+  prompt:'generate_image("convert the dashed lines into solid lines", image_1)',
+  before:IMG.tr_in, after:IMG.tr_gen, ar:1.228, direct:"BACD", reim:"DACB"}
+];
+(function(){
+  var tabs=document.getElementById("taskTabs"), ba=document.getElementById("ba"),
+      before=document.getElementById("baBefore"), after=document.getElementById("baAfter"),
+      div=document.getElementById("baDiv"), knob=document.getElementById("baKnob"),
+      range=document.getElementById("baRange");
+  TASKS.forEach(function(t,k){ var b=document.createElement("button"); b.className="tab"; b.textContent=t.id;
+    b.addEventListener("click",function(){select(k);}); tabs.appendChild(b); });
+  function pos(p){ before.style.clipPath="inset(0 "+(100-p)+"% 0 0)"; div.style.left=p+"%"; knob.style.left=p+"%"; }
+  range.addEventListener("input",function(){ pos(+range.value); });
+  function select(k){
+    var t=TASKS[k];
+    Array.prototype.forEach.call(tabs.children,function(b,j){ b.classList.toggle("on",j===k); });
+    document.getElementById("tq").textContent=t.q;
+    document.getElementById("tprompt").textContent=t.prompt;
+    var note=document.getElementById("tnote"); note.textContent=t.note||""; note.style.display=t.note?"":"none";
+    document.getElementById("tdirect").textContent=t.direct+"  ✗";
+    document.getElementById("treim").textContent=t.reim+"  ✓";
+    before.src=t.before; after.src=t.after; ba.style.aspectRatio=String(t.ar);
+    range.value=50; pos(50);
+  }
+  select(0);
+})();
+
+/* bar charts */
+function barChart(mount, cfg){
+  mount.innerHTML="";
+  cfg.cats.forEach(function(cat,ci){
+    var g=document.createElement("div"); g.className="cg";
+    var bars=document.createElement("div"); bars.className="bars";
+    cfg.series.forEach(function(s,si){
+      var col=document.createElement("div"); col.className="barcol";
+      var v=cfg.values[si][ci];
+      var lab=document.createElement("div"); lab.className="blabel"; lab.textContent=v.toFixed(1);
+      var bar=document.createElement("div"); bar.className="bar"; bar.style.background=s.color;
+      bar.tabIndex=0; bar.title=s.name+": "+v.toFixed(1)+(cfg.unit||"");
+      col.appendChild(lab); col.appendChild(bar); bars.appendChild(col);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.style.height=(v/cfg.max*100)+"%"; }); });
+    });
+    var cl=document.createElement("div"); cl.className="clabel"; cl.textContent=cat;
+    g.appendChild(bars); g.appendChild(cl); mount.appendChild(g);
+  });
+}
+function legend(mount, series){
+  mount.innerHTML=""; series.forEach(function(s){ var e=document.createElement("span"); e.className="lg";
+    e.innerHTML='<span class="sw" style="background:'+s.color+'"></span>'+s.name; mount.appendChild(e); });
+}
+var SERIES=[{name:"No tools",color:"var(--sand)"},{name:"Visual Sketchpad",color:"var(--steel)"},
+            {name:"ReImaGin",color:"var(--accent)"}];
+var RES={
+ "Gemini-3.1-Pro":[[37.2,60.3,52.0,71.5,91.7],[38.5,65.0,57.0,74.7,99.2],[42.3,69.7,59.0,89.0,94.6]],
+ "GPT-5":[[29.5,44.7,36.0,48.5,83.9],[16.7,51.0,37.7,41.7,88.7],[44.9,54.0,43.7,73.5,89.2]],
+ "Qwen-3.5-27B":[[34.6,51.8,45.0,35.7,83.5],[25.6,48.0,46.7,32.5,91.1],[46.2,61.3,54.3,78.5,88.3]]
+};
+var RESCATS=["Puzzle","Collision","Spatial","Tracing","Depth"];
+(function(){
+  var tabs=document.getElementById("modelTabs"), plot=document.getElementById("resPlot");
+  legend(document.getElementById("resLegend"), SERIES);
+  Object.keys(RES).forEach(function(m,k){ var b=document.createElement("button"); b.className="tab"; b.textContent=m;
+    b.addEventListener("click",function(){pick(k);}); tabs.appendChild(b); });
+  function pick(k){ var m=Object.keys(RES)[k];
+    Array.prototype.forEach.call(tabs.children,function(b,j){ b.classList.toggle("on",j===k); });
+    barChart(plot,{series:SERIES,cats:RESCATS,values:RES[m],max:100,unit:"%"}); }
+  pick(0);
+})();
+(function(){
+  var series=[{name:"Single generation",color:"var(--steel)"},{name:"Test-time scaling (N=10)",color:"var(--accent)"}];
+  legend(document.getElementById("ttsLegend"), series);
+  barChart(document.getElementById("ttsPlot"),{series:series,cats:["Gemini-3.1-Pro","GPT-5","Qwen-3.5-27B"],
+    values:[[51.0,39.0,42.0],[59.0,43.7,54.3]],max:70,unit:"%"});
+})();
+(function(){
+  var series=[{name:"No strategy",color:"var(--sand)"},{name:"Automatically discovered",color:"var(--accent)"},
+              {name:"Handcrafted",color:"var(--gold)"}];
+  legend(document.getElementById("discLegend"), series);
+  barChart(document.getElementById("discPlot"),{series:series,cats:["Collision","Spatial","Tracing","Depth"],
+    values:[[60.0,51.2,72.8,90.3],[64.0,55.7,87.3,94.3],[69.7,59.0,89.0,94.6]],max:100,unit:"%"});
+})();
+
+/* bibtex copy */
+(function(){ var b=document.getElementById("copyBtn"), src=document.getElementById("bib"); if(!b)return;
+  b.addEventListener("click",function(){ navigator.clipboard.writeText(src.innerText).then(function(){
+    var t=b.textContent; b.textContent="Copied"; setTimeout(function(){b.textContent=t;},1400); }); }); })();
+</script>
+</body>
+</html>
