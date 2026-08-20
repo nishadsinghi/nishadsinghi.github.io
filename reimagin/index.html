@@ -320,7 +320,7 @@ footer{color:var(--muted); font-size:13px; font-family:var(--mono); letter-spaci
 <section class="band alt" id="idea">
   <div class="inner">
     <p class="kicker">02 &middot; The idea</p>
-    <h2>Make the tool a generator</h2>
+    <h2>A generative model as the tool</h2>
     <div class="split">
       <div>
         <p class="lead">Instruction-following image generators change what a visual tool can be. They
@@ -413,8 +413,8 @@ footer{color:var(--muted); font-size:13px; font-family:var(--mono); letter-spaci
     both text-only reasoning and the specialist-tool baseline. Switch models to compare.</p>
     <div class="tabs" id="modelTabs"></div>
     <div class="panel"><div class="legend" id="resLegend"></div><div class="plot" id="resPlot"></div></div>
-    <p class="hint">Accuracy (%), higher is better. Occlusion counting uses sMAPE (lower is better) and
-    is shown in the full table below, not the chart.</p>
+    <p class="hint">Accuracy (%), higher is better, except Occlusion counting (Occ. Count &darr;),
+    which reports sMAPE where lower is better, so a shorter bar is better for that task.</p>
     <p class="pull">Gains of up to <span class="accent">+25.0 points</span> over text-only reasoning,
     from a single, general image-generation tool.</p>
     <div class="tablewrap">
@@ -441,7 +441,7 @@ footer{color:var(--muted); font-size:13px; font-family:var(--mono); letter-spaci
 <section class="band alt" id="tts">
   <div class="inner">
     <p class="kicker">06 &middot; Test-time scaling</p>
-    <h2>Scale the image, not the text</h2>
+    <h2>Scale by sampling images</h2>
     <p class="lead">Generating images opens a new axis of test-time scaling. Rather than only thinking
     for longer in words, ReImaGin can imagine the same scene several times and keep the best picture.</p>
     <p>For one input and prompt, it samples <b>N = 10</b> candidate generations, then an MLLM selector
@@ -635,6 +635,7 @@ var TASKS=[
 function barChart(mount, cfg){
   mount.innerHTML="";
   cfg.cats.forEach(function(cat,ci){
+    var maxc = Array.isArray(cfg.max) ? cfg.max[ci] : cfg.max;   // per-category scale
     var g=document.createElement("div"); g.className="cg";
     var bars=document.createElement("div"); bars.className="bars";
     cfg.series.forEach(function(s,si){
@@ -644,7 +645,7 @@ function barChart(mount, cfg){
       var bar=document.createElement("div"); bar.className="bar"; bar.style.background=s.color;
       bar.tabIndex=0; bar.title=s.name+": "+v.toFixed(1)+(cfg.unit||"");
       col.appendChild(lab); col.appendChild(bar); bars.appendChild(col);
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.style.height=(v/cfg.max*100)+"%"; }); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.style.height=(v/maxc*100)+"%"; }); });
     });
     var cl=document.createElement("div"); cl.className="clabel"; cl.textContent=cat;
     g.appendChild(bars); g.appendChild(cl); mount.appendChild(g);
@@ -657,11 +658,12 @@ function legend(mount, series){
 var SERIES=[{name:"No tools",color:"var(--sand)"},{name:"Visual Sketchpad",color:"var(--steel)"},
             {name:"ReImaGin",color:"var(--accent)"}];
 var RES={
- "Gemini-3.1-Pro":[[37.2,60.3,52.0,71.5,91.7],[38.5,65.0,57.0,74.7,99.2],[42.3,69.7,59.0,89.0,94.6]],
- "GPT-5":[[29.5,44.7,36.0,48.5,83.9],[16.7,51.0,37.7,41.7,88.7],[44.9,54.0,43.7,73.5,89.2]],
- "Qwen-3.5-27B":[[34.6,51.8,45.0,35.7,83.5],[25.6,48.0,46.7,32.5,91.1],[46.2,61.3,54.3,78.5,88.3]]
+ "Gemini-3.1-Pro":[[37.2,8.9,60.3,52.0,71.5,91.7],[38.5,9.7,65.0,57.0,74.7,99.2],[42.3,7.1,69.7,59.0,89.0,94.6]],
+ "GPT-5":[[29.5,12.5,44.7,36.0,48.5,83.9],[16.7,11.7,51.0,37.7,41.7,88.7],[44.9,7.4,54.0,43.7,73.5,89.2]],
+ "Qwen-3.5-27B":[[34.6,12.2,51.8,45.0,35.7,83.5],[25.6,8.7,48.0,46.7,32.5,91.1],[46.2,6.8,61.3,54.3,78.5,88.3]]
 };
-var RESCATS=["Puzzle","Collision","Spatial","Tracing","Depth"];
+var RESCATS=["Puzzle","Occ. Count ↓","Collision","Spatial","Tracing","Depth"];
+var RESMAX=[100,15,100,100,100,100];   // Occ. Count is sMAPE, its own scale
 (function(){
   var tabs=document.getElementById("modelTabs"), plot=document.getElementById("resPlot");
   legend(document.getElementById("resLegend"), SERIES);
@@ -669,7 +671,7 @@ var RESCATS=["Puzzle","Collision","Spatial","Tracing","Depth"];
     b.addEventListener("click",function(){pick(k);}); tabs.appendChild(b); });
   function pick(k){ var m=Object.keys(RES)[k];
     Array.prototype.forEach.call(tabs.children,function(b,j){ b.classList.toggle("on",j===k); });
-    barChart(plot,{series:SERIES,cats:RESCATS,values:RES[m],max:100,unit:"%"}); }
+    barChart(plot,{series:SERIES,cats:RESCATS,values:RES[m],max:RESMAX,unit:"%"}); }
   pick(0);
 })();
 (function(){
